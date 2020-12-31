@@ -1,0 +1,7 @@
+{
+    "quest_completed": {
+        "category": "ambient", 
+        "subtitle": "ll.subtitle.quest_completed", 
+        "sounds": [ {"name":"ll:quest_completed", "stream":true} ]
+    }
+}

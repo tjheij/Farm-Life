@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y": { "model": "farm_life:log_whitechocolate" },
+        "axis=z": { "model": "farm_life:log_whitechocolate", "x": 90 },
+        "axis=x": { "model": "farm_life:log_whitechocolate", "x": 90, "y": 90 },
+        "axis=none": { "model": "farm_life:log_whitechocolate" }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {"item": "minecraft:book"},
+        {"item": "minecraft:dye", "data": 5}
+    ],
+    "result": {
+        "item": "ll:item_questbook"
+    }
+}

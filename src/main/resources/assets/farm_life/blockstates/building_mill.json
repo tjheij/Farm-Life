@@ -1,0 +1,23 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "facing=north,state=invisible": {"model": "farm_life:building_transparent", "y": 180},
+        "facing=south,state=invisible": {"model": "farm_life:building_transparent"},
+        "facing=west,state=invisible": {"model": "farm_life:building_transparent", "y": 90},
+        "facing=east,state=invisible": {"model": "farm_life:building_transparent", "y": 270},
+    
+        "facing=north,state=renderer":{"model": "farm_life:building_mill_mblock"},
+        "facing=south,state=renderer":{"model": "farm_life:building_mill_mblock", "y": 180},
+        "facing=west,state=renderer":{"model": "farm_life:building_mill_mblock", "y": 270},
+        "facing=east,state=renderer":{"model": "farm_life:building_mill_mblock", "y": 90},
+    
+        "facing=north,state=single": {"model": "farm_life:building_mill_single", "y": 180},
+        "facing=south,state=single": {"model": "farm_life:building_mill_single"},
+        "facing=west,state=single": {"model": "farm_life:building_mill_single", "y": 90},
+        "facing=east,state=single": {"model": "farm_life:building_mill_single", "y": 270}
+    },
+    "inventory": {
+        "model": "farm_life:building_mill_single", "y": 180,
+        "transform": "forge:default-block"
+    }
+}

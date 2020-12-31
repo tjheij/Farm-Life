@@ -1,0 +1,18 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "facing=north,state=false":{"model": "farm_life:animal_chicken"},
+        "facing=south,state=false":{"model": "farm_life:animal_chicken", "y": 180},
+        "facing=west,state=false":{"model": "farm_life:animal_chicken", "y": 270},
+        "facing=east,state=false":{"model": "farm_life:animal_chicken", "y": 90},
+    
+        "facing=north,state=true": {"model": "farm_life:animal_chicken_filled"},
+        "facing=south,state=true": {"model": "farm_life:animal_chicken_filled", "y": 180},
+        "facing=west,state=true": {"model": "farm_life:animal_chicken_filled", "y": 270},
+        "facing=east,state=true": {"model": "farm_life:animal_chicken_filled", "y": 90}
+    },
+    "inventory": {
+        "model": "farm_life:animal_chicken", "y": 180,
+        "transform": "forge:default-block"
+    }
+}

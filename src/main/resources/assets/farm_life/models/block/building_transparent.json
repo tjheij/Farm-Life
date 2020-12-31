@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "farm_life:blocks/buildings/mblock_transparent",
+        "particle": "farm_life:blocks/buildings/mill/mill_side"
+    }
+}

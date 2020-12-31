@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "farm_life:blocks/crops/basilicum/basilicum0"
+    }
+}

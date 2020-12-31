@@ -1,0 +1,24 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "farm_life:blocks/machines/winemachine",
+        "bottom": "farm_life:blocks/machines/machine_blankside",
+        "leftside": "farm_life:blocks/machines/machine_leftside",
+        "rightside": "farm_life:blocks/machines/machine_rightside",
+        "side": "farm_life:blocks/machines/machine_blankside",
+        "particle": "farm_life:blocks/machines/machine_blankside"
+    },
+    "elements": [
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 16, 16, 16 ],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#bottom", "cullface": "down" },
+                "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#top" },
+                "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#side", "cullface": "north" },
+                "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#side", "cullface": "south" },
+                "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#leftside", "cullface": "west" },
+                "east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#rightside", "cullface": "east" }
+            }
+        }
+    ]
+}

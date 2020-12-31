@@ -1,0 +1,6 @@
+{"variants": {
+    "check_decay=false,decayable=false": {"model": "farm_life:leaf_walnut"},
+    "check_decay=false,decayable=true": {"model": "farm_life:leaf_walnut"},
+    "check_decay=true,decayable=false": {"model": "farm_life:leaf_walnut"},
+    "check_decay=true,decayable=true": {"model": "farm_life:leaf_walnut"}
+}}

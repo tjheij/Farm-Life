@@ -1,0 +1,4 @@
+{"variants": {
+    "stage=1": {"model": "farm_life:sapling_walnut"},
+    "stage=0": {"model": "farm_life:sapling_walnut"}
+}}

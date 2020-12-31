@@ -1,0 +1,84 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "side": "farm_life:blocks/machines/machine_blankside",
+        "top": "farm_life:blocks/machines/pancakemachine",
+        "rightside": "farm_life:blocks/machines/machine_rightside",
+        "leftside": "farm_life:blocks/machines/machine_leftside",
+        "bottom": "farm_life:blocks/machines/machine_blankside",
+        "particle": "farm_life:blocks/machines/machine_blankside"
+    },
+    "elements": [{
+        "from": [
+            0,
+            0,
+            0
+        ],
+        "to": [
+            16,
+            16,
+            16
+        ],
+        "faces": {
+            "east": {
+                "uv": [
+                    0,
+                    0,
+                    16,
+                    16
+                ],
+                "cullface": "east",
+                "texture": "#rightside"
+            },
+            "south": {
+                "uv": [
+                    0,
+                    0,
+                    16,
+                    16
+                ],
+                "cullface": "south",
+                "texture": "#side"
+            },
+            "north": {
+                "uv": [
+                    0,
+                    0,
+                    16,
+                    16
+                ],
+                "cullface": "north",
+                "texture": "#side"
+            },
+            "west": {
+                "uv": [
+                    0,
+                    0,
+                    16,
+                    16
+                ],
+                "cullface": "west",
+                "texture": "#leftside"
+            },
+            "up": {
+                "uv": [
+                    0,
+                    0,
+                    16,
+                    16
+                ],
+                "texture": "#top"
+            },
+            "down": {
+                "uv": [
+                    0,
+                    0,
+                    16,
+                    16
+                ],
+                "cullface": "down",
+                "texture": "#bottom"
+            }
+        }
+    }]
+}

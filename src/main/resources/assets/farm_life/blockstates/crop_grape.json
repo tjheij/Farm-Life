@@ -1,0 +1,16 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "crop"
+    },
+    "variants": {
+        "age=0": { "model": "farm_life:crops/grape0" },
+        "age=1": { "model": "farm_life:crops/grape0" },
+        "age=2": { "model": "farm_life:crops/grape1" },
+        "age=3": { "model": "farm_life:crops/grape1" },
+        "age=4": { "model": "farm_life:crops/grape2" },
+        "age=5": { "model": "farm_life:crops/grape2" },
+        "age=6": { "model": "farm_life:crops/grape2" },
+        "age=7": { "model": "farm_life:crops/grape3" }
+    }
+}

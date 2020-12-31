@@ -1,0 +1,23 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "facing=south": {"model": "farm_life:machine_pancake"},
+        "facing=east": {
+            "y": 270,
+            "model": "farm_life:machine_pancake"
+        },
+        "facing=north": {
+            "y": 180,
+            "model": "farm_life:machine_pancake"
+        },
+        "facing=west": {
+            "y": 90,
+            "model": "farm_life:machine_pancake"
+        }
+    },
+    "inventory": {
+        "transform": "forge:default-block",
+        "y": 180,
+        "model": "farm_life:machine_pancake"
+    }
+}

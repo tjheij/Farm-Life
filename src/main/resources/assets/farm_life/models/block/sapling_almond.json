@@ -1,0 +1,4 @@
+{
+    "parent": "block/cross",
+    "textures": {"cross": "farm_life:blocks/trees/almond_sapling"}
+}

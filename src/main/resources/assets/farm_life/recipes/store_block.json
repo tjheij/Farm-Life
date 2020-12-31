@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XXX",
+        "W W",
+        "WWW"
+    ],
+    "key": {
+        "X": {
+            "item": "minecraft:wool",
+            "data": 32767
+        },
+        "W": {
+            "type":"forge:ore_dict",
+            "ore": "plankWood"
+        }
+    },
+    "result": {
+        "item": "ll:store_block"
+    }
+}

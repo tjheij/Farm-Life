@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "facing=north": { "model": "farm_life:machine_pasta", "y": 180 },
+        "facing=south": { "model": "farm_life:machine_pasta"},
+        "facing=west":  { "model": "farm_life:machine_pasta", "y": 90 },
+        "facing=east":  { "model": "farm_life:machine_pasta", "y": 270 }
+    },
+    "inventory": {
+        "model": "farm_life:machine_pasta", "y": 180,
+        "transform": "forge:default-block"
+    }
+}

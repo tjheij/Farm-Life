@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " H ",
+        "WDW",
+        "WWW"
+    ],
+    "key": {
+        "H": {
+            "item": "minecraft:hopper"
+        },
+        "D": {
+            "item": "minecraft:diamond"
+        },
+        "W": {
+            "type":"forge:ore_dict",
+            "ore": "plankWood"
+        }
+    },
+    "result": {
+        "item": "ll:market_block"
+    }
+}

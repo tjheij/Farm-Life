@@ -1,0 +1,4 @@
+{
+    "parent": "block/crop",
+    "textures": {"crop": "farm_life:blocks/crops/vanilla/vanilla2"}
+}

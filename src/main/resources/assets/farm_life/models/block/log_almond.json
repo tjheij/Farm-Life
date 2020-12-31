@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "side": "farm_life:blocks/trees/fruit_log",
+        "end": "farm_life:blocks/trees/fruit_log_top"
+    }
+}

@@ -1,0 +1,13 @@
+{"variants": {
+    "axis=none": {"model": "farm_life:log_walnut"},
+    "axis=z": {
+        "x": 90,
+        "model": "farm_life:log_walnut"
+    },
+    "axis=x": {
+        "x": 90,
+        "y": 90,
+        "model": "farm_life:log_walnut"
+    },
+    "axis=y": {"model": "farm_life:log_walnut"}
+}}

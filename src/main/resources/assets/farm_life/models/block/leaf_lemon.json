@@ -1,0 +1,4 @@
+{
+    "parent": "block/leaves",
+    "textures": {"all": "farm_life:blocks/trees/lemon_leaves"}
+}
