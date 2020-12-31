@@ -13,11 +13,11 @@
             "item": "minecraft:redstone_block"
         },
         "C": {
-            "item": "ll:itemchip_mill"
+            "item": "farm_life:itemchip_mill"
         }
     },
     "result": {
-        "item": "ll:building_mill",
+        "item": "farm_life:building_mill",
         "count": 2
     }
 }

@@ -13,10 +13,10 @@
             "item": "minecraft:redstone_block"
         },
         "C": {
-            "item": "ll:itemchip_sausagemachine"
+            "item": "farm_life:itemchip_sausagemachine"
         }
     },
     "result": {
-        "item": "ll:machine_sausage"
+        "item": "farm_life:machine_sausage"
     }
 }

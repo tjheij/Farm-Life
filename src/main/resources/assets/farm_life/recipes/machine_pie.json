@@ -13,10 +13,10 @@
             "item": "minecraft:redstone_block"
         },
         "C": {
-            "item": "ll:itemchip_piemachine"
+            "item": "farm_life:itemchip_piemachine"
         }
     },
     "result": {
-        "item": "ll:machine_pie"
+        "item": "farm_life:machine_pie"
     }
 }

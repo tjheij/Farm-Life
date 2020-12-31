@@ -13,10 +13,10 @@
             "item": "minecraft:redstone_block"
         },
         "C": {
-            "item": "ll:itemchip_cookiemachine"
+            "item": "farm_life:itemchip_cookiemachine"
         }
     },
     "result": {
-        "item": "ll:machine_cookie"
+        "item": "farm_life:machine_cookie"
     }
 }

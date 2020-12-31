@@ -13,10 +13,10 @@
             "item": "minecraft:redstone_block"
         },
         "C": {
-            "item": "ll:itemchip_cornflakemachine"
+            "item": "farm_life:itemchip_cornflakemachine"
         }
     },
     "result": {
-        "item": "ll:machine_cornflake"
+        "item": "farm_life:machine_cornflake"
     }
 }

@@ -5,6 +5,6 @@
         {"item": "minecraft:dye", "data": 5}
     ],
     "result": {
-        "item": "ll:item_questbook"
+        "item": "farm_life:item_questbook"
     }
 }

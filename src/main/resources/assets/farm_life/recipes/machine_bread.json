@@ -13,10 +13,10 @@
             "item": "minecraft:redstone_block"
         },
         "C": {
-            "item": "ll:itemchip_breadmachine"
+            "item": "farm_life:itemchip_breadmachine"
         }
     },
     "result": {
-        "item": "ll:machine_bread"
+        "item": "farm_life:machine_bread"
     }
 }

@@ -13,10 +13,10 @@
             "item": "minecraft:redstone_block"
         },
         "C": {
-            "item": "ll:itemchip_cheesemachine"
+            "item": "farm_life:itemchip_cheesemachine"
         }
     },
     "result": {
-        "item": "ll:machine_cheese"
+        "item": "farm_life:machine_cheese"
     }
 }

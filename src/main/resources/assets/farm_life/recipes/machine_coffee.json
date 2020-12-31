@@ -13,10 +13,10 @@
             "item": "minecraft:redstone_block"
         },
         "C": {
-            "item": "ll:itemchip_coffeemachine"
+            "item": "farm_life:itemchip_coffeemachine"
         }
     },
     "result": {
-        "item": "ll:machine_coffee"
+        "item": "farm_life:machine_coffee"
     }
 }

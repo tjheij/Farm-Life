@@ -13,10 +13,10 @@
             "item": "minecraft:redstone_block"
         },
         "C": {
-            "item": "ll:itemchip_pancakemachine"
+            "item": "farm_life:itemchip_pancakemachine"
         }
     },
     "result": {
-        "item": "ll:machine_pancake"
+        "item": "farm_life:machine_pancake"
     }
 }

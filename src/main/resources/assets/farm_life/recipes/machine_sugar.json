@@ -13,10 +13,10 @@
             "item": "minecraft:redstone_block"
         },
         "C": {
-            "item": "ll:itemchip_sugarmachine"
+            "item": "farm_life:itemchip_sugarmachine"
         }
     },
     "result": {
-        "item": "ll:machine_sugar"
+        "item": "farm_life:machine_sugar"
     }
 }

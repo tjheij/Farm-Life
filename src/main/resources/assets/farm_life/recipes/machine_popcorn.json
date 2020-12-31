@@ -13,10 +13,10 @@
             "item": "minecraft:redstone_block"
         },
         "C": {
-            "item": "ll:itemchip_popcornmachine"
+            "item": "farm_life:itemchip_popcornmachine"
         }
     },
     "result": {
-        "item": "ll:machine_popcorn"
+        "item": "farm_life:machine_popcorn"
     }
 }

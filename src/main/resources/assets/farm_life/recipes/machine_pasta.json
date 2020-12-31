@@ -13,10 +13,10 @@
             "item": "minecraft:redstone_block"
         },
         "C": {
-            "item": "ll:itemchip_pastamachine"
+            "item": "farm_life:itemchip_pastamachine"
         }
     },
     "result": {
-        "item": "ll:machine_pasta"
+        "item": "farm_life:machine_pasta"
     }
 }

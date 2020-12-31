@@ -13,10 +13,10 @@
             "item": "minecraft:redstone_block"
         },
         "C": {
-            "item": "ll:itemchip_winemachine"
+            "item": "farm_life:itemchip_winemachine"
         }
     },
     "result": {
-        "item": "ll:machine_wine"
+        "item": "farm_life:machine_wine"
     }
 }
