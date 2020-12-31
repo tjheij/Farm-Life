@@ -14,7 +14,7 @@ public class ItemSeed extends ItemSeeds implements IHasPrice{
 		super(crop, Blocks.FARMLAND);
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(ModItems.llcrops);
+		setCreativeTab(ModItems.farm_life_crops);
 		this.price = price;
 	}
 	

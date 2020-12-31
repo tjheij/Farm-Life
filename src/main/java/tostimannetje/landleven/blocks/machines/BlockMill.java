@@ -90,7 +90,7 @@ public class BlockMill extends BlockTileEntity<TileEntityMachine>{
 	
 	public BlockMill(String name, int ID) {
 		super(name, Material.ROCK);
-		this.setCreativeTab(ModBlocks.llmachines);
+		this.setCreativeTab(ModBlocks.farm_life_machines);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(STATE, States.SINGLE));
 		this.ID = ID;
 	}

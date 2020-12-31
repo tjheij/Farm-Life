@@ -16,7 +16,7 @@ public class ItemTreeProduct extends Item{
 	public ItemTreeProduct(String name, int sellValue) {
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(ModItems.lltrees);
+		setCreativeTab(ModItems.farm_life_trees);
 		this.sellValue = sellValue;
 	}
 	

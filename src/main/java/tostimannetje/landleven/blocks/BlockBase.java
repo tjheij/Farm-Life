@@ -10,7 +10,7 @@ public class BlockBase extends Block{
 		super(material);
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(ModBlocks.llmachines);
+		setCreativeTab(ModBlocks.farm_life_machines);
 	}
 	
 }

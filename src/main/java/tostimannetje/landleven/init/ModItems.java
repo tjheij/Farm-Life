@@ -32,19 +32,19 @@ public class ModItems {
 	public static final List<ItemChip> CHIPS = new ArrayList<ItemChip>();
 	public static final List<Item> ITEMS = new ArrayList<Item>();
 	
-	public static final CreativeTabs llcrops = (new CreativeTabs(Reference.MODID + "crops") {
+	public static final CreativeTabs farm_life_crops = (new CreativeTabs(Reference.MODID + "crops") {
 		@Override
 		public ItemStack getTabIconItem() {
 			return new ItemStack(itemClover);
 		}	
 	});
-	public static final CreativeTabs lltrees = (new CreativeTabs(Reference.MODID + "trees") {
+	public static final CreativeTabs farm_life_trees = (new CreativeTabs(Reference.MODID + "trees") {
 		@Override
 		public ItemStack getTabIconItem() {
 			return new ItemStack(Item.getItemFromBlock(ModBlocks.saplingApple));
 		}	
 	});
-	public static final CreativeTabs llproducts = (new CreativeTabs(Reference.MODID + "products") {
+	public static final CreativeTabs farm_life_products = (new CreativeTabs(Reference.MODID + "products") {
 		@Override
 		public ItemStack getTabIconItem() {
 			return new ItemStack(itemWineGrape);

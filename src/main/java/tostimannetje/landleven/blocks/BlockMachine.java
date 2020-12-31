@@ -42,7 +42,7 @@ public class BlockMachine extends BlockTileEntity<TileEntityMachine> {
 	public BlockMachine(String name, int ID) {
 		super(name, Material.IRON);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-		this.setCreativeTab(ModBlocks.llmachines);
+		this.setCreativeTab(ModBlocks.farm_life_machines);
 		setHardness(3f);
 		setResistance(5f);
 		this.ID = ID;

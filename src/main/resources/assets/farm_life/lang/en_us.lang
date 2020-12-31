@@ -208,7 +208,7 @@ tile.machine_cornflake.name=Cornflake Machine
 
 tile.building_mill.name=Mill
 
-itemGroup.farm_lifecrops=Landleven Seeds & Crops
-itemGroup.farm_lifetrees=Landleven Trees & Animals
-itemGroup.farm_lifemachines=Landleven Machines
-itemGroup.farm_lifeproducts=Landleven Products
+itemGroup.farm_lifecrops=Farm Life Seeds & Crops
+itemGroup.farm_lifetrees=Farm Life Trees & Animals
+itemGroup.farm_lifemachines=Farm Life Machines
+itemGroup.farm_lifeproducts=Farm Life Products

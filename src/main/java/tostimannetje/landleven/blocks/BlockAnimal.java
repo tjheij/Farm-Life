@@ -51,7 +51,7 @@ public class BlockAnimal extends BlockTileEntity<TileEntityAnimal> implements IH
 	public BlockAnimal(String name, int ID, int price) {
 		super(name, Material.PLANTS);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(STATE, false));
-		this.setCreativeTab(ModItems.lltrees);
+		this.setCreativeTab(ModItems.farm_life_trees);
 		this.ID = ID;
 		this.price = price;
 	}

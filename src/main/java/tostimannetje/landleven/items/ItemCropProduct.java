@@ -16,7 +16,7 @@ public class ItemCropProduct extends Item{
 	public ItemCropProduct(String name, int sellValue) {
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(ModItems.llcrops);
+		setCreativeTab(ModItems.farm_life_crops);
 		this.sellValue = sellValue;
 	}
 	

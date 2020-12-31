@@ -47,7 +47,7 @@ public class BlockSapling extends BlockBush implements IGrowable, IHasPrice{
     	setUnlocalizedName(name);
     	setRegistryName(name);
     	setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
-    	setCreativeTab(ModItems.lltrees);
+    	setCreativeTab(ModItems.farm_life_trees);
     	this.price = price;
     }
     

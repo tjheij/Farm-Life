@@ -10,7 +10,7 @@ public class ItemBase extends Item{
 	public ItemBase(String name) {
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(ModItems.llproducts);
+		setCreativeTab(ModItems.farm_life_products);
 	}
 	
 }

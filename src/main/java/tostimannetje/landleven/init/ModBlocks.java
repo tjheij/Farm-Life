@@ -89,7 +89,7 @@ public class ModBlocks {
 	public static final List<BlockAnimal> ANIMALS = new ArrayList<BlockAnimal>();
 	public static final List<BlockSapling> SAPLINGS = new ArrayList<BlockSapling>();
 
-	public static final CreativeTabs llmachines = (new CreativeTabs(Reference.MODID + "machines") {
+	public static final CreativeTabs farm_life_machines = (new CreativeTabs(Reference.MODID + "machines") {
 		@Override
 		public ItemStack getTabIconItem() {
 			return new ItemStack(Item.getItemFromBlock(ModBlocks.wineMachine));
