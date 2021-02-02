@@ -15,8 +15,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
 import tostimannetje.landleven.blocks.machines.BlockMill;
 import tostimannetje.landleven.blocks.machines.BlockMill.States;
 import tostimannetje.landleven.init.ModItems;
@@ -51,6 +54,25 @@ public class TileEntityMill extends TileEntityMachine{
 		
 		setItemStackHandlers();
 		setInput();
+	}
+	
+	@Nullable
+	@Override
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
+			if(hasMaster()) {
+				if(this.master == null) {
+	    			this.master = (TileEntityMill)world.getTileEntity(getMasterCoords());
+	    		}
+				
+				if(facing == EnumFacing.DOWN){
+					return (T)this.master.outputSlot;
+				}else {
+					return (T)this.master.inputSlot;
+				}
+			}
+		}
+		return super.getCapability(capability, facing);
 	}
 	
 	@Override
