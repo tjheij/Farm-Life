@@ -7,10 +7,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import tostimannetje.landleven.init.GuiHandler;
-import tostimannetje.landleven.init.ModBlocks;
-import tostimannetje.landleven.init.ModItems;
 import tostimannetje.landleven.network.NetworkHandler;
 import tostimannetje.landleven.proxy.CommonProxy;
 

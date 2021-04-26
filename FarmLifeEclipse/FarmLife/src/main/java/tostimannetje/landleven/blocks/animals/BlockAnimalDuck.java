@@ -6,18 +6,17 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.World;
 import tostimannetje.landleven.blocks.BlockAnimal;
 import tostimannetje.landleven.tileentity.TileEntityAnimal;
-import tostimannetje.landleven.tileentity.TileEntityChicken;
-import tostimannetje.landleven.tileentity.TileEntityPig;
+import tostimannetje.landleven.tileentity.TileEntityDuck;
 
-public class BlockAnimalPig extends BlockAnimal{
+public class BlockAnimalDuck extends BlockAnimal{
 
-	public BlockAnimalPig(String name, int ID, int price) {
+	public BlockAnimalDuck(String name, int ID, int price) {
 		super(name, ID, price);
 	}
 
 	@Nullable
 	@Override
 	public TileEntityAnimal createTileEntity(World world, IBlockState state) {
-		return new TileEntityPig(this.getUnlocalizedName());
+		return new TileEntityDuck(this.getUnlocalizedName());
 	}
 }

@@ -5,7 +5,6 @@ import javax.annotation.Nonnull;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
-import tostimannetje.landleven.tileentity.TileEntityMachine;
 
 public class CustomItemStackHandler extends ItemStackHandler{
 	public CustomItemStackHandler(int slots){

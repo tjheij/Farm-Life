@@ -1,27 +1,18 @@
 package tostimannetje.landleven;
 
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.items.ItemHandlerHelper;
 import tostimannetje.landleven.init.ModItems;
 import tostimannetje.landleven.network.MessageCoinsToClient;
@@ -88,7 +79,6 @@ public class EventHandler {
 	@SubscribeEvent
 	public void onDimensionChange(PlayerChangedDimensionEvent event) {
 		EntityPlayer player = event.player;
-		IQuest quest = player.getCapability(QuestProvider.QUEST, null);
 
 		NetworkHandler.sendToPlayer(new MessageQuestToClient(player), (EntityPlayerMP) player);
 		NetworkHandler.sendToPlayer(new MessageCoinsToClient(player), (EntityPlayerMP) player);
@@ -97,7 +87,6 @@ public class EventHandler {
 	@SubscribeEvent
 	public void onPlayerClone(PlayerRespawnEvent event) {
 		EntityPlayer player = event.player;
-		IQuest quest = player.getCapability(QuestProvider.QUEST, null);
 		
 		NetworkHandler.sendToPlayer(new MessageQuestToClient(player), (EntityPlayerMP) player);
 		NetworkHandler.sendToPlayer(new MessageCoinsToClient(player), (EntityPlayerMP) player);
