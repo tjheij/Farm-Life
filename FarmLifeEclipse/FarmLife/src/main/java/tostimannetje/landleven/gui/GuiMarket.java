@@ -152,6 +152,7 @@ public class GuiMarket extends GuiContainer{
 			NetworkHandler.sendToServer(new MessageCoinsToServer(Minecraft.getMinecraft().player));
 		}else if(b.id == 2) {
 			//Collect coins
+			coins += te.getCollectedCoins();
 			questCapability.addCoins(te.getCollectedCoins());
 			NetworkHandler.sendToServer(new MessageCoinsToServer(Minecraft.getMinecraft().player));
 		}
