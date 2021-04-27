@@ -2,24 +2,19 @@ package tostimannetje.landleven.container;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
 import tostimannetje.landleven.tileentity.TileEntityAnimal;
 
 public class ContainerAnimal extends Container{
 	private TileEntityAnimal te;
-	private int inputs;
-	private int extraInputs;
 	private int processTimer;
 	private int processTimeNeeded;
 	

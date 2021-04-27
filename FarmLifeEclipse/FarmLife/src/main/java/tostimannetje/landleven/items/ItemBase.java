@@ -1,8 +1,6 @@
 package tostimannetje.landleven.items;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import tostimannetje.landleven.init.ModBlocks;
 import tostimannetje.landleven.init.ModItems;
 
 public class ItemBase extends Item{

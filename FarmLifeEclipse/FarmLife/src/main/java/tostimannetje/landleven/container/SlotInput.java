@@ -1,12 +1,10 @@
 package tostimannetje.landleven.container;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import tostimannetje.landleven.tileentity.TileEntityMachine;
 import tostimannetje.landleven.tileentity.TileEntityProducer;
 
 public class SlotInput extends SlotItemHandler{

@@ -1,23 +1,14 @@
 package tostimannetje.landleven.network;
 
-import java.util.ArrayList;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import tostimannetje.landleven.container.ContainerMachine;
 import tostimannetje.landleven.questing.IQuest;
-import tostimannetje.landleven.questing.QuestBase;
-import tostimannetje.landleven.questing.QuestBase.QuestState;
-import tostimannetje.landleven.questing.QuestLine;
-import tostimannetje.landleven.questing.QuestLine.State;
 import tostimannetje.landleven.questing.QuestProvider;
-import tostimannetje.landleven.tileentity.TileEntityMachine;
 
 public class MessageQuestToClient implements IMessage{
 

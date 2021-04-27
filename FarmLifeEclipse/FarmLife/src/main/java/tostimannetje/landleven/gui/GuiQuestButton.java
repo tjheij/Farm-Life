@@ -1,16 +1,10 @@
 package tostimannetje.landleven.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import tostimannetje.landleven.Reference;
-import tostimannetje.landleven.init.ModBlocks;
 import tostimannetje.landleven.questing.QuestBase;
 import tostimannetje.landleven.questing.QuestLine;
 import tostimannetje.landleven.questing.QuestBase.QuestState;
@@ -23,17 +17,12 @@ public class GuiQuestButton extends GuiButton{
 	private String text;
 	private State state;
 	private QuestState questState;
-	private int iconx;
-	private int icony;
-	private QuestLine questLine;
-	private QuestBase quest;
 	private boolean isCheckButton;
 	
 	public GuiQuestButton(int buttonId, QuestLine questLine, int x, int y, int width, int height, final ResourceLocation itemTexture) {
 		super(buttonId, x, y, width, height, questLine.getName());
 		this.ITEM_TEXTURE = itemTexture;
 		this.text = questLine.getName();
-		this.questLine = questLine;
 		this.state = questLine.getState();
 	}
 	
@@ -41,7 +30,6 @@ public class GuiQuestButton extends GuiButton{
 		super(buttonId, x, y, width, height, quest.getProgress()+"/"+quest.getGoal());
 		this.ITEM_TEXTURE = itemTexture;
 		this.text = quest.getProgress()+"/"+quest.getGoal();
-		this.quest = quest;
 		this.questState = quest.getQuestState();
 	}
 	
@@ -76,7 +64,7 @@ public class GuiQuestButton extends GuiButton{
 	public void drawIcon(Minecraft mc, ResourceLocation ITEM_TEXTURE){
 		GlStateManager.color(1, 1, 1, 1);
 		mc.getTextureManager().bindTexture(ITEM_TEXTURE);
-        this.drawModalRectWithCustomSizedTexture(this.x + 3, this.y + 3, 0, 0, 16, 16, 16, 16);
+        drawModalRectWithCustomSizedTexture(this.x + 3, this.y + 3, 0, 0, 16, 16, 16, 16);
 	}
 	
 	public void drawText(Minecraft mc, String text) {

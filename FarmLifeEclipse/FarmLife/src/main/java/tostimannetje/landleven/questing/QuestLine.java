@@ -1,10 +1,8 @@
 package tostimannetje.landleven.questing;
 
 import java.util.ArrayList;
-
 import net.minecraft.util.ResourceLocation;
 import tostimannetje.landleven.Reference;
-import tostimannetje.landleven.questing.QuestBase.QuestState;
 
 public class QuestLine {
 	private ArrayList<QuestBase> quests = new ArrayList<QuestBase>();

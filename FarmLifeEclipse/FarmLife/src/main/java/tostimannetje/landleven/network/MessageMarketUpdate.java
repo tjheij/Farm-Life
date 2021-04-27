@@ -5,10 +5,7 @@ import net.minecraft.inventory.Container;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import tostimannetje.landleven.container.ContainerMachine;
 import tostimannetje.landleven.container.ContainerMarket;
-import tostimannetje.landleven.questing.IQuest;
-import tostimannetje.landleven.tileentity.TileEntityMachine;
 import tostimannetje.landleven.tileentity.TileEntityMarket;
 
 public class MessageMarketUpdate implements IMessage{

@@ -1,11 +1,7 @@
 package tostimannetje.landleven.tileentity;
 
-import java.util.Map;
 import java.util.Set;
 
-import com.google.common.collect.Maps;
-
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import tostimannetje.landleven.init.ModItems;
 

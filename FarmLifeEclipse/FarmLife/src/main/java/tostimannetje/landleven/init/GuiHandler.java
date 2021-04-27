@@ -15,15 +15,9 @@ import tostimannetje.landleven.gui.GuiMarket;
 import tostimannetje.landleven.gui.GuiQuestbook;
 import tostimannetje.landleven.gui.GuiStore;
 import tostimannetje.landleven.tileentity.TileEntityAnimal;
-import tostimannetje.landleven.tileentity.TileEntityCheesemachine;
-import tostimannetje.landleven.tileentity.TileEntityCookiemachine;
-import tostimannetje.landleven.tileentity.TileEntityCow;
 import tostimannetje.landleven.tileentity.TileEntityMachine;
 import tostimannetje.landleven.tileentity.TileEntityMarket;
-import tostimannetje.landleven.tileentity.TileEntityMill;
-import tostimannetje.landleven.tileentity.TileEntityPastamachine;
 import tostimannetje.landleven.tileentity.TileEntityStore;
-import tostimannetje.landleven.tileentity.TileEntityWinemachine;
 
 public class GuiHandler implements IGuiHandler{
 	
@@ -49,7 +43,7 @@ public class GuiHandler implements IGuiHandler{
 		if(ID == -1) {
 			return new GuiQuestbook();
 		}else if(ID == 0) {
-			return new GuiStore(getServerGuiElement(ID, player, world, x, y, z),  (TileEntityStore) world.getTileEntity(new BlockPos(x, y, z)));
+			return new GuiStore(getServerGuiElement(ID, player, world, x, y, z));
 		}else if(ID == 1) {
 			return new GuiMarket(getServerGuiElement(ID, player, world, x, y, z),  (TileEntityMarket) world.getTileEntity(new BlockPos(x, y, z)));
 		}else if(ID < 1000) {

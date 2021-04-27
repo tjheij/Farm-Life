@@ -1,12 +1,8 @@
 package tostimannetje.landleven.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import tostimannetje.landleven.Reference;
 
@@ -15,8 +11,6 @@ public class GuiMachineButton extends GuiButton{
 	protected static final ResourceLocation BUTTON_TEXTURES = new ResourceLocation(Reference.MODID, "textures/gui/guibuttons.png");
 	protected ResourceLocation ITEM_TEXTURE;
 	public boolean isSelected;
-	private int iconx;
-	private int icony;
 	
 	public GuiMachineButton(int buttonId, int x, int y, int widthIn, int heightIn, final ResourceLocation itemTexture) {
 		super(buttonId, x, y, widthIn, heightIn, "");
@@ -41,7 +35,7 @@ public class GuiMachineButton extends GuiButton{
 	public void drawIcon(Minecraft mc, ResourceLocation ITEM_TEXTURE){
 		GlStateManager.color(1, 1, 1, 1);
 		mc.getTextureManager().bindTexture(ITEM_TEXTURE);
-        this.drawModalRectWithCustomSizedTexture(this.x + 3, this.y + 3, 0, 0, 16, 16, 16, 16);
+        drawModalRectWithCustomSizedTexture(this.x + 3, this.y + 3, 0, 0, 16, 16, 16, 16);
 	}
 	
 	//0 = not selected, 1 = selected

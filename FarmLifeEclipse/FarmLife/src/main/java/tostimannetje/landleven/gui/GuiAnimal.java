@@ -7,7 +7,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import tostimannetje.landleven.Reference;
-import tostimannetje.landleven.init.ModBlocks;
 import tostimannetje.landleven.tileentity.TileEntityAnimal;
 import tostimannetje.landleven.tileentity.TileEntityProducer;
 

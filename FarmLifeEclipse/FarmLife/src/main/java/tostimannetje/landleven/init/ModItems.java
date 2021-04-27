@@ -3,18 +3,14 @@ package tostimannetje.landleven.init;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import tostimannetje.landleven.Reference;
+import tostimannetje.landleven.items.IHasPrice;
 import tostimannetje.landleven.items.ItemAnimalProduct;
 import tostimannetje.landleven.items.ItemBase;
 import tostimannetje.landleven.items.ItemChip;
@@ -28,8 +24,8 @@ import tostimannetje.landleven.items.ItemTreeProduct;
 @Mod.EventBusSubscriber(modid=Reference.MODID)
 public class ModItems {
 
-	public static final List<ItemSeed> SEEDS = new ArrayList<ItemSeed>();
-	public static final List<ItemChip> CHIPS = new ArrayList<ItemChip>();
+	public static final List<IHasPrice> SEEDS = new ArrayList<IHasPrice>();
+	public static final List<IHasPrice> CHIPS = new ArrayList<IHasPrice>();
 	public static final List<Item> ITEMS = new ArrayList<Item>();
 	
 	public static final CreativeTabs farm_life_crops = (new CreativeTabs(Reference.MODID + "crops") {
@@ -262,9 +258,28 @@ public class ModItems {
 		SEEDS.add(itemSeedsPotato);
 		SEEDS.add(itemSeedsSugarcane);
 		
-		for(ItemSeed seed : SEEDS) {
-			ITEMS.add(seed);
-		}
+		ITEMS.add(itemSeedsWheat);
+		ITEMS.add(itemSeedsClover);
+		ITEMS.add(itemSeedsGrape);
+		ITEMS.add(itemSeedsCorn);
+		ITEMS.add(itemSeedsLavender);
+		ITEMS.add(itemSeedsGrass);
+		ITEMS.add(itemSeedsOats);
+		ITEMS.add(itemSeedsCucumber);
+		ITEMS.add(itemSeedsChardonnay);
+		ITEMS.add(itemSeedsTomato);
+		ITEMS.add(itemSeedsCarrot);
+		ITEMS.add(itemSeedsCoffeeBean);
+		ITEMS.add(itemSeedsPurpleRose);
+		ITEMS.add(itemSeedsCactus);
+		ITEMS.add(itemSeedsVanilla);
+		ITEMS.add(itemSeedsCherryTomato);
+		ITEMS.add(itemSeedsBasilicum);
+		ITEMS.add(itemSeedsRye);
+		ITEMS.add(itemSeedsWhiteGrape);
+		ITEMS.add(itemSeedsRice);
+		ITEMS.add(itemSeedsPotato);
+		ITEMS.add(itemSeedsSugarcane);
 		
 		ITEMS.add(itemMilk);
 		ITEMS.add(itemEgg);
@@ -343,9 +358,20 @@ public class ModItems {
 		CHIPS.add(itemChipPancakemachine);
 		CHIPS.add(itemChipCornflakemachine);
 		
-		for(ItemChip chip : CHIPS) {
-			ITEMS.add(chip);
-		}
+		ITEMS.add(itemChipCheesemachine);
+		ITEMS.add(itemChipWinemachine);
+		ITEMS.add(itemChipMill);
+		ITEMS.add(itemChipCookiemachine);
+		ITEMS.add(itemChipPastamachine);
+		ITEMS.add(itemChipJuicemachine);
+		ITEMS.add(itemChipCoffeemachine);
+		ITEMS.add(itemChipSausagemachine);
+		ITEMS.add(itemChipBreadmachine);
+		ITEMS.add(itemChipPiemachine);
+		ITEMS.add(itemChipPopcornmachine);
+		ITEMS.add(itemChipSugarmachine);
+		ITEMS.add(itemChipPancakemachine);
+		ITEMS.add(itemChipCornflakemachine);
 	}
 	
 	@SubscribeEvent

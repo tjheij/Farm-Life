@@ -2,28 +2,19 @@ package tostimannetje.landleven.gui;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.lwjgl.opengl.GL11;
-
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.items.ItemHandlerHelper;
 import tostimannetje.landleven.Reference;
 import tostimannetje.landleven.init.ModBlocks;
-import tostimannetje.landleven.network.MessageMachineSelect;
-import tostimannetje.landleven.network.MessageMarketUpdate;
-import tostimannetje.landleven.network.MessageCoinsToClient;
-import tostimannetje.landleven.network.MessageStoreSetQuantity;
 import tostimannetje.landleven.network.MessageStoreBuy;
+import tostimannetje.landleven.network.MessageStoreSetQuantity;
 import tostimannetje.landleven.network.NetworkHandler;
 import tostimannetje.landleven.questing.IQuest;
 import tostimannetje.landleven.questing.QuestProvider;
@@ -32,13 +23,11 @@ import tostimannetje.landleven.store.StoreItem;
 import tostimannetje.landleven.store.StoreSection;
 import tostimannetje.landleven.store.StoreSectionBlocks;
 import tostimannetje.landleven.store.StoreSectionItems;
-import tostimannetje.landleven.tileentity.TileEntityStore;
 
 public class GuiStore extends GuiContainer{
 
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(Reference.MODID, "textures/gui/guistore.png");
 	private static final ResourceLocation STOREITEM = new ResourceLocation(Reference.MODID, "textures/gui/guistorebuttons.png");
-	private TileEntityStore te;
 	private List<StoreSection> storeSections = new ArrayList<StoreSection>();
 	private List<StoreItem> storeItems = new ArrayList<StoreItem>();
 	private int[] storeAmounts;
@@ -50,9 +39,8 @@ public class GuiStore extends GuiContainer{
 	int coins;
 	
 	
-	public GuiStore(Container container, TileEntityStore te) {
+	public GuiStore(Container container) {
 		super(container);
-		this.te = te;
 		this.xSize = storewidth;
 		this.ySize = storeheight;
 		IQuest questCapability = Minecraft.getMinecraft().player.getCapability(QuestProvider.QUEST, null);
@@ -125,7 +113,7 @@ public class GuiStore extends GuiContainer{
 		y = 37 + (height - ySize) / 2;
 		
 		mc.getTextureManager().bindTexture(STOREITEM);
-		this.drawModalRectWithCustomSizedTexture(x -12 + currentSection * 20, y-19, 38, 89, 20, 3, 100, 100);
+		drawModalRectWithCustomSizedTexture(x -12 + currentSection * 20, y-19, 38, 89, 20, 3, 100, 100);
 		
 		
 		
@@ -164,7 +152,7 @@ public class GuiStore extends GuiContainer{
 	public void drawItemIcon(StoreItem storeItem, int x, int y) {
 		GlStateManager.color(1, 1, 1, 1);
 		mc.getTextureManager().bindTexture(storeItem.icon);
-		this.drawModalRectWithCustomSizedTexture(x + 11, y + 17, 0, 0, 16, 16, 16, 16);
+		drawModalRectWithCustomSizedTexture(x + 11, y + 17, 0, 0, 16, 16, 16, 16);
 	}
 	
 	public void drawBlockIcon(StoreItem storeItem, int x, int y, String altText) {

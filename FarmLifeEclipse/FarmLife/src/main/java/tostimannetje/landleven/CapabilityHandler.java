@@ -12,7 +12,7 @@ public class CapabilityHandler{
 	public static final ResourceLocation QUEST = new ResourceLocation(Reference.MODID, "quest");
 
 	@SubscribeEvent
-	public void attachCapability(AttachCapabilitiesEvent event){
+	public void attachCapability(@SuppressWarnings("rawtypes") AttachCapabilitiesEvent event){
 		if (!(event.getObject() instanceof EntityPlayer)) return;
 		
 		event.addCapability(QUEST, new QuestProvider((EntityPlayer)event.getObject()));

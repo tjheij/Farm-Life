@@ -2,8 +2,6 @@ package tostimannetje.landleven.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
-import net.minecraft.block.BlockLog.EnumAxis;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -18,8 +16,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import tostimannetje.landleven.EnumHandler;
-import tostimannetje.landleven.init.ModBlocks;
 import tostimannetje.landleven.init.ModItems;
 import tostimannetje.landleven.init.ModTrees;
 

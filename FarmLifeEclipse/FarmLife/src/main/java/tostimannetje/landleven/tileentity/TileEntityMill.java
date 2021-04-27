@@ -1,15 +1,10 @@
 package tostimannetje.landleven.tileentity;
 
-import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Nullable;
 
-import com.google.common.collect.Maps;
-
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -56,6 +51,7 @@ public class TileEntityMill extends TileEntityMachine{
 		setInput();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Nullable
 	@Override
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {

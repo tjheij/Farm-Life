@@ -3,7 +3,6 @@ package tostimannetje.landleven.tileentity;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,15 +13,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import tostimannetje.landleven.items.ItemAnimalProduct;
 import tostimannetje.landleven.items.ItemCropProduct;
 import tostimannetje.landleven.items.ItemProduct;
 import tostimannetje.landleven.items.ItemTreeProduct;
-import tostimannetje.landleven.network.NetworkHandler;
-import tostimannetje.landleven.questing.IQuest;
-import tostimannetje.landleven.questing.QuestProvider;
 
 public class TileEntityMarket extends TileEntity implements ITickable{
 
@@ -76,6 +71,7 @@ public class TileEntityMarket extends TileEntity implements ITickable{
 		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Nullable
 	@Override
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {

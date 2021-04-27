@@ -7,7 +7,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -18,12 +17,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import tostimannetje.landleven.EnumHandler;
-import tostimannetje.landleven.IHasModel;
-import tostimannetje.landleven.Main;
 import tostimannetje.landleven.Reference;
-import tostimannetje.landleven.blocks.BlockAnimal;
-import tostimannetje.landleven.blocks.BlockBase;
 import tostimannetje.landleven.blocks.BlockCrop;
 import tostimannetje.landleven.blocks.BlockMarket;
 import tostimannetje.landleven.blocks.BlockSapling;
@@ -53,6 +47,7 @@ import tostimannetje.landleven.blocks.machines.BlockPopcornmachine;
 import tostimannetje.landleven.blocks.machines.BlockSausagemachine;
 import tostimannetje.landleven.blocks.machines.BlockSugarmachine;
 import tostimannetje.landleven.blocks.machines.BlockWinemachine;
+import tostimannetje.landleven.items.IHasPrice;
 import tostimannetje.landleven.tileentity.TileEntityAnimal;
 import tostimannetje.landleven.tileentity.TileEntityBreadmachine;
 import tostimannetje.landleven.tileentity.TileEntityBuffalo;
@@ -66,7 +61,6 @@ import tostimannetje.landleven.tileentity.TileEntityDuck;
 import tostimannetje.landleven.tileentity.TileEntityGoat;
 import tostimannetje.landleven.tileentity.TileEntityHorseWhite;
 import tostimannetje.landleven.tileentity.TileEntityJuicemachine;
-import tostimannetje.landleven.tileentity.TileEntityMachine;
 import tostimannetje.landleven.tileentity.TileEntityMarket;
 import tostimannetje.landleven.tileentity.TileEntityMill;
 import tostimannetje.landleven.tileentity.TileEntityOx;
@@ -86,8 +80,8 @@ public class ModBlocks {
 
 	public static final List<Block> BLOCKS = new ArrayList<Block>();
 	public static final List<Block> CROPS = new ArrayList<Block>();
-	public static final List<BlockAnimal> ANIMALS = new ArrayList<BlockAnimal>();
-	public static final List<BlockSapling> SAPLINGS = new ArrayList<BlockSapling>();
+	public static final List<IHasPrice> ANIMALS = new ArrayList<IHasPrice>();
+	public static final List<IHasPrice> SAPLINGS = new ArrayList<IHasPrice>();
 
 	public static final CreativeTabs farm_life_machines = (new CreativeTabs(Reference.MODID + "machines") {
 		@Override
@@ -212,47 +206,56 @@ public class ModBlocks {
 
 		BLOCKS.add(logApple);
 		BLOCKS.add(leafApple);
+		BLOCKS.add(saplingApple);
 		SAPLINGS.add(saplingApple);
 		BLOCKS.add(logCherry);
 		BLOCKS.add(leafCherry);
+		BLOCKS.add(saplingCherry);
 		SAPLINGS.add(saplingCherry);
 		BLOCKS.add(logWhiteChocolate);
 		BLOCKS.add(leafWhiteChocolate);
+		BLOCKS.add(saplingWhiteChocolate);
 		SAPLINGS.add(saplingWhiteChocolate);
 		BLOCKS.add(logMaple);
 		BLOCKS.add(leafMaple);
+		BLOCKS.add(saplingMaple);
 		SAPLINGS.add(saplingMaple);
 		BLOCKS.add(logChocolate);
 		BLOCKS.add(leafChocolate);
+		BLOCKS.add(saplingChocolate);
 		SAPLINGS.add(saplingChocolate);
 		BLOCKS.add(logLychee);
 		BLOCKS.add(leafLychee);
+		BLOCKS.add(saplingLychee);
 		SAPLINGS.add(saplingLychee);
 		BLOCKS.add(logOrange);
 		BLOCKS.add(leafOrange);
+		BLOCKS.add(saplingOrange);
 		SAPLINGS.add(saplingOrange);
 		BLOCKS.add(logWalnut);
 		BLOCKS.add(leafWalnut);
+		BLOCKS.add(saplingWalnut);
 		SAPLINGS.add(saplingWalnut);
 		BLOCKS.add(logBanana);
 		BLOCKS.add(leafBanana);
+		BLOCKS.add(saplingBanana);
 		SAPLINGS.add(saplingBanana);
 		BLOCKS.add(logLime);
 		BLOCKS.add(leafLime);
+		BLOCKS.add(saplingLime);
 		SAPLINGS.add(saplingLime);
 		BLOCKS.add(logLemon);
 		BLOCKS.add(leafLemon);
+		BLOCKS.add(saplingLemon);
 		SAPLINGS.add(saplingLemon);
 		BLOCKS.add(logAlmond);
 		BLOCKS.add(leafAlmond);
+		BLOCKS.add(saplingAlmond);
 		SAPLINGS.add(saplingAlmond);
 		BLOCKS.add(logCoconut);
 		BLOCKS.add(leafCoconut);
+		BLOCKS.add(saplingCoconut);
 		SAPLINGS.add(saplingCoconut);
-		
-		for(Block sapling : SAPLINGS) {
-			BLOCKS.add(sapling);
-		}
 		
 		ANIMALS.add(animalCow);
 		ANIMALS.add(animalChicken);
@@ -264,9 +267,15 @@ public class ModBlocks {
 		ANIMALS.add(animalTurkey);
 		ANIMALS.add(animalDuck);
 		
-		for(Block animal : ANIMALS) {
-			BLOCKS.add(animal);
-		}
+		BLOCKS.add(animalCow);
+		BLOCKS.add(animalChicken);
+		BLOCKS.add(animalOx);
+		BLOCKS.add(animalBuffalo);
+		BLOCKS.add(animalGoat);
+		BLOCKS.add(animalHorseWhite);
+		BLOCKS.add(animalPig);
+		BLOCKS.add(animalTurkey);
+		BLOCKS.add(animalDuck);
 		
 		BLOCKS.add(blockStore);
 		BLOCKS.add(blockMarket);

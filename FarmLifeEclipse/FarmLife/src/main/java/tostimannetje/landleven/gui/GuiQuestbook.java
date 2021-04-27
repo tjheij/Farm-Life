@@ -9,24 +9,15 @@ import org.lwjgl.input.Keyboard;
 import com.google.common.collect.Lists;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.inventory.ClickType;
-import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
-import tostimannetje.landleven.Main;
 import tostimannetje.landleven.Reference;
-import tostimannetje.landleven.init.ModBlocks;
-import tostimannetje.landleven.network.MessageMachineSelect;
-import tostimannetje.landleven.network.NetworkHandler;
 import tostimannetje.landleven.questing.IQuest;
 import tostimannetje.landleven.questing.QuestLine;
 import tostimannetje.landleven.questing.QuestProvider;
-import tostimannetje.landleven.questing.Quests;
 import tostimannetje.landleven.questing.QuestBase;
 import tostimannetje.landleven.questing.QuestBase.QuestState;
 import tostimannetje.landleven.questing.QuestLine.State;
@@ -42,8 +33,6 @@ public class GuiQuestbook extends GuiScreen{
 	
 	private int xSize = 176;
 	private int ySize = 166;
-	private int buttonWidth = 147;
-	private int buttonHeight = 22;
 	
 	public GuiQuestbook() {
 	}

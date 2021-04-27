@@ -1,5 +1,6 @@
 package tostimannetje.landleven.items;
 
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
@@ -18,7 +19,18 @@ public class ItemSeed extends ItemSeeds implements IHasPrice{
 		this.price = price;
 	}
 	
+	@Override
 	public int getPrice() {
 		return price;
+	}
+
+	@Override
+	public Item getItem() {
+		return this;
+	}
+
+	@Override
+	public Block getBlock() {
+		return null;
 	}
 }

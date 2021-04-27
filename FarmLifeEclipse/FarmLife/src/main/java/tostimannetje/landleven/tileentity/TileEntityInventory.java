@@ -1,8 +1,6 @@
 package tostimannetje.landleven.tileentity;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.items.IItemHandler;
@@ -15,12 +13,14 @@ public abstract class TileEntityInventory extends TileEntity{
     public TileEntityInventory(int slots, String name){
 
         this.slots = new ItemStackHandler(slots){
-	        public boolean canInsert(ItemStack stack, int slot){
+	        @SuppressWarnings("unused")
+			public boolean canInsert(ItemStack stack, int slot){
 	            return TileEntityInventory.this.isItemValidForSlot(slot, stack);
 	        }
 	
 	        
-	        public boolean canExtract(ItemStack stack, int slot){
+	        @SuppressWarnings("unused")
+			public boolean canExtract(ItemStack stack, int slot){
 	            return TileEntityInventory.this.canExtractItem(slot, stack);
 	        }
 	

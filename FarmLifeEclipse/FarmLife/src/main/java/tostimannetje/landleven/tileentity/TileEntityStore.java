@@ -29,6 +29,7 @@ public class TileEntityStore extends TileEntity{
 		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Nullable
 	@Override
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {

@@ -1,7 +1,6 @@
 package tostimannetje.landleven.container;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;

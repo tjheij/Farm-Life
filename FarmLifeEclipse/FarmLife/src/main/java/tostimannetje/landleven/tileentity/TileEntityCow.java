@@ -1,7 +1,5 @@
 package tostimannetje.landleven.tileentity;
 
-import java.util.Set;
-
 import tostimannetje.landleven.init.ModItems;
 
 public class TileEntityCow extends TileEntityAnimal{

@@ -1,10 +1,7 @@
 package tostimannetje.landleven.items;
 
-import net.minecraft.init.Blocks;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemSeeds;
-import tostimannetje.landleven.blocks.BlockCrop;
-import tostimannetje.landleven.init.ModItems;
 
 public class ItemChip extends ItemBase implements IHasPrice{
 	
@@ -15,7 +12,18 @@ public class ItemChip extends ItemBase implements IHasPrice{
 		this.price = price;
 	}
 	
+	@Override
 	public int getPrice() {
 		return price;
+	}
+
+	@Override
+	public Item getItem() {
+		return this;
+	}
+
+	@Override
+	public Block getBlock() {
+		return null;
 	}
 }

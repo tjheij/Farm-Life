@@ -1,10 +1,7 @@
 package tostimannetje.landleven.init;
 
 import java.util.Map;
-
 import com.google.common.collect.Maps;
-
-import net.minecraft.block.Block;
 import tostimannetje.landleven.blocks.BlockSapling;
 import tostimannetje.landleven.blocks.BlockTreeLeaf;
 import tostimannetje.landleven.blocks.BlockTreeLog;

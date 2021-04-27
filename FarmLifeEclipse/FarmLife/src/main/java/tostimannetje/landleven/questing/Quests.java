@@ -1,9 +1,6 @@
 package tostimannetje.landleven.questing;
 
 import java.util.ArrayList;
-
-import net.minecraft.entity.player.EntityPlayer;
-import tostimannetje.landleven.init.ModBlocks;
 import tostimannetje.landleven.init.ModItems;
 import tostimannetje.landleven.questing.QuestLine.State;
 import tostimannetje.landleven.questing.QuestBase.QuestState;
