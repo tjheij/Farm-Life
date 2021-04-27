@@ -109,12 +109,13 @@ public class BlockMachine extends BlockTileEntity<TileEntityMachine> {
 									if(player.inventory.getStackInSlot(j).getCount() < 64) {
 										player.inventory.getStackInSlot(j).grow(1);
 										given = true;
+										break;
 									}
 								}
 							}
 						}	
 						
-						//If the player only hadd full stacks or didn't have the item, a new stack should be made
+						//If the player only had full stacks or didn't have the item, a new stack should be made
 						if(!given) {
 							for(int k = 0; k < 36; k++) {
 								if(player.inventory.getStackInSlot(k).isEmpty()) {
