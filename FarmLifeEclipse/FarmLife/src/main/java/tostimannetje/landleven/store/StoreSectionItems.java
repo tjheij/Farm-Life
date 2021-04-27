@@ -5,8 +5,8 @@ import tostimannetje.landleven.items.IHasPrice;
 
 public class StoreSectionItems extends StoreSection{
 	
-	public StoreSectionItems(String name, List<IHasPrice> items, String icon) {
-		super(name, icon);
+	public StoreSectionItems(String name, List<IHasPrice> items) {
+		super(name);
 		for(int i = 0; i < items.size(); i++) {
 			addToStore(items.get(i));
 		}

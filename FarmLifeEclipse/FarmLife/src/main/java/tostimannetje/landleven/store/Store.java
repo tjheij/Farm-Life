@@ -13,16 +13,16 @@ public class Store {
 	public Store() {}
 	
 	public static void storeInit() {
-		StoreSection seedSection = new StoreSectionItems("Seeds", ModItems.SEEDS, "textures/items/itemseeds_clover.png");
+		StoreSection seedSection = new StoreSectionItems("Seeds", ModItems.SEEDS);
 		storeSections.add(seedSection);
 		
-		StoreSection treeSection = new StoreSectionBlocks("Trees", ModBlocks.SAPLINGS, "textures/blocks/trees/apple/sapling_apple.png");
+		StoreSection treeSection = new StoreSectionBlocks("Trees", ModBlocks.SAPLINGS);
 		storeSections.add(treeSection);
 		
-		StoreSection animalSection = new StoreSectionBlocks("Animals", ModBlocks.ANIMALS, "textures/items/itemanimal_milk.png");
+		StoreSection animalSection = new StoreSectionBlocks("Animals", ModBlocks.ANIMALS);
 		storeSections.add(animalSection);
 		
-		StoreSection chipSection = new StoreSectionItems("Chips", ModItems.CHIPS, "textures/items/itemchip_cheesemachine.png");
+		StoreSection chipSection = new StoreSectionItems("Chips", ModItems.CHIPS);
 		storeSections.add(chipSection);
 	}
 	

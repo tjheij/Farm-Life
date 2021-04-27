@@ -2,18 +2,15 @@ package tostimannetje.landleven.store;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.util.ResourceLocation;
-import tostimannetje.landleven.Reference;
+
 
 public abstract class StoreSection {
 
 	protected List<StoreItem> sectionItems = new ArrayList<StoreItem>();
 	private String name;
-	private ResourceLocation icon;
 	
-	public StoreSection(String name, String icon) {
+	public StoreSection(String name) {
 		this.name = name;
-		this.icon = new ResourceLocation(Reference.MODID, icon);
 	}
 	
 	public void addToStore(StoreItem item) {}
