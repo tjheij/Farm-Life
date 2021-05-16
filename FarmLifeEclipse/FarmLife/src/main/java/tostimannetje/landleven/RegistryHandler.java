@@ -22,6 +22,7 @@ public class RegistryHandler {
 		ModTrees.init();
 		ModItems.init();
 		Store.storeInit();
+		RecipeHandler.init();
 	}
 
 	public static void initRegistries() {

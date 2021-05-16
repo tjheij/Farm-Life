@@ -1,6 +1,6 @@
 package tostimannetje.landleven.tileentity;
 
-import tostimannetje.landleven.init.ModItems;
+import tostimannetje.landleven.RecipeHandler;
 
 public class TileEntityPig extends TileEntityAnimal{
 
@@ -15,8 +15,8 @@ public class TileEntityPig extends TileEntityAnimal{
 	}
 	
 	public void init() {
-		this.inputItem = ModItems.itemPotato;
-		this.outputItem = ModItems.itemPork;
+		this.inputItem = RecipeHandler.getInputs(this).get(0);
+		this.outputItem = RecipeHandler.getOutputs(this).get(0);
 		
 		this.setItemStackHandlers();
 	}

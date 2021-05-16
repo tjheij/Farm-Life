@@ -1,5 +1,6 @@
 package tostimannetje.landleven.tileentity;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
@@ -14,6 +15,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import tostimannetje.landleven.CustomItemStackHandler;
+import tostimannetje.landleven.RecipeHandler;
+import tostimannetje.landleven.items.ItemBaseProduct;
 
 public class TileEntityMachine extends TileEntityProducer{
 	
@@ -31,6 +34,30 @@ public class TileEntityMachine extends TileEntityProducer{
 	
 	public TileEntityMachine(String name){
 		super(name);
+	}
+	
+	public <T extends TileEntityProducer> void init(T producer) {
+		ItemStack[] outputs = new ItemStack[0];
+		inputs = convertListToItemStacks(RecipeHandler.getInputs(producer), inputs);
+		if(RecipeHandler.extraInputs.containsKey(producer.getClass())) {
+			extraInputs = convertListToItemStacks(RecipeHandler.getExtraInputs(producer), extraInputs);
+		}
+		outputs = convertListToItemStacks(RecipeHandler.getOutputs(producer), outputs);
+		
+		for(int i = 0; i < inputs.length; i++) {
+			this.recipeList.put(inputs[i], outputs[i]);
+		}
+		
+		setItemStackHandlers();
+		setInput();
+	}
+	
+	public ItemStack[] convertListToItemStacks(List<ItemBaseProduct> from, ItemStack[] to) {
+		to = new ItemStack[from.size()];
+		for(int i = 0; i < from.size(); i++) {
+			to[i] = new ItemStack(from.get(i));
+		}
+		return to;
 	}
 	
 	@Override

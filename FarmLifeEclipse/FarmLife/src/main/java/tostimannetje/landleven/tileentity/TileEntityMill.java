@@ -1,11 +1,8 @@
 package tostimannetje.landleven.tileentity;
 
-import java.util.Set;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -17,7 +14,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import tostimannetje.landleven.blocks.machines.BlockMill;
 import tostimannetje.landleven.blocks.machines.BlockMill.States;
-import tostimannetje.landleven.init.ModItems;
 
 public class TileEntityMill extends TileEntityMachine{
 	
@@ -28,27 +24,12 @@ public class TileEntityMill extends TileEntityMachine{
 
 	public TileEntityMill() {
 		super();
-		init();
+		init(this);
 	}
 	
 	public TileEntityMill(String name) {
 		super(name);
-		init();
-	}
-
-	public void init() {
-		this.recipeList.put(new ItemStack(ModItems.itemWheat), new ItemStack(ModItems.itemFlourWheat));
-		this.recipeList.put(new ItemStack(ModItems.itemOats), new ItemStack(ModItems.itemFlourOats));
-		this.recipeList.put(new ItemStack(ModItems.itemCorn), new ItemStack(ModItems.itemFlourCorn));
-		this.recipeList.put(new ItemStack(ModItems.itemRye), new ItemStack(ModItems.itemFlourRye));
-		
-		Set<ItemStack> keys = recipeList.keySet();
-		
-		inputs = keys.toArray(new ItemStack[keys.size()]);
-		extraInputs = new ItemStack[] {};
-		
-		setItemStackHandlers();
-		setInput();
+		init(this);
 	}
 	
 	@SuppressWarnings("unchecked")

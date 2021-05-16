@@ -1,5 +1,7 @@
 package tostimannetje.landleven.tileentity;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.item.Item;
@@ -15,6 +17,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import tostimannetje.landleven.CustomItemStackHandler;
+import tostimannetje.landleven.items.ItemBaseProduct;
 
 public class TileEntityProducer extends TileEntity implements ITickable{
 
@@ -157,5 +160,11 @@ public class TileEntityProducer extends TileEntity implements ITickable{
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
 		NBTTagCompound tag = pkt.getNbtCompound();
 		readFromNBT(tag);
+	}
+	
+	public void setIngredients(ItemBaseProduct product, List<ItemBaseProduct> ingredients) {
+		if(product.ingredients.isEmpty()) {
+			product.ingredients = ingredients;
+		}
 	}
 }

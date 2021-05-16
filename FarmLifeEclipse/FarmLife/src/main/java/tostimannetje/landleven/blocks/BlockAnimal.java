@@ -137,6 +137,7 @@ public class BlockAnimal extends BlockTileEntity<TileEntityAnimal> implements IH
 									if(player.inventory.getStackInSlot(j).getCount() < 64) {
 										player.inventory.getStackInSlot(j).grow(1);
 										given = true;
+										break;
 									}
 								}
 							}
