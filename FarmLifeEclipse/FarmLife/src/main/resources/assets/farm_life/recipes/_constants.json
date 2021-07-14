@@ -1,0 +1,93 @@
+[
+  {
+  	"name": "MILK",
+    "ingredient": [
+      {
+        "item": "minecraft:milk_bucket",
+        "data": 0
+      },
+      {
+        "item": "farm_life:itemanimal_milk",
+        "data": 0
+      }
+    ]
+  },
+  {
+  	"name": "WHEAT",
+    "ingredient": [
+      {
+        "item": "minecraft:wheat",
+        "data": 0
+      },
+      {
+        "item": "farm_life:item_wheat",
+        "data": 0
+      }
+    ]
+  },
+  {
+  	"name": "EGG",
+    "ingredient": [
+      {
+        "item": "minecraft:egg",
+        "data": 0
+      },
+      {
+        "item": "farm_life:itemanimal_egg",
+        "data": 0
+      }
+    ]
+  },
+  {
+  	"name": "SUGAR",
+    "ingredient": [
+      {
+        "item": "minecraft:sugar",
+        "data": 0
+      },
+      {
+        "item": "farm_life:itemmachine_sugar",
+        "data": 0
+      }
+    ]
+  },
+  {
+  	"name": "CARROT",
+    "ingredient": [
+      {
+        "item": "minecraft:carrot",
+        "data": 0
+      },
+      {
+        "item": "farm_life:item_carrot",
+        "data": 0
+      }
+    ]
+  },
+  {
+  	"name": "MUSHROOM",
+    "ingredient": [
+      {
+        "item": "minecraft:red_mushroom",
+        "data": 0
+      },
+      {
+        "item": "minecraft:brown_mushroom",
+        "data": 0
+      }
+    ]
+  },
+  {
+  	"name": "APPLE",
+    "ingredient": [
+      {
+        "item": "minecraft:apple",
+        "data": 0
+      },
+      {
+        "item": "farm_life:item_apple",
+        "data": 0
+      }
+    ]
+  }
+]
