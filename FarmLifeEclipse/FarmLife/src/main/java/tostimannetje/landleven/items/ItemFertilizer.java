@@ -23,7 +23,7 @@ public class ItemFertilizer extends ItemBase{
 		Block block = worldIn.getBlockState(pos).getBlock();
 		if(block == Blocks.FARMLAND) {
 			turnToFertilizedLand(worldIn, pos);
-			player.getActiveItemStack().shrink(1);
+			player.getHeldItem(hand).shrink(1);
 		}
 		
         return EnumActionResult.SUCCESS;

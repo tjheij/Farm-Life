@@ -3,6 +3,6 @@
     "textures": {
         "particle": "blocks/dirt",
         "dirt": "blocks/dirt",
-        "top": "farm_life:fertilized_land_moist"
+        "top": "farm_life:blocks/fertilized_land_moist"
     }
 }
