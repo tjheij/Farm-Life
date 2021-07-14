@@ -1,5 +1,6 @@
 package tostimannetje.landleven;
 
+import net.minecraft.block.BlockCrops;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -7,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -14,6 +16,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.items.ItemHandlerHelper;
+import tostimannetje.landleven.init.ModBlocks;
 import tostimannetje.landleven.init.ModItems;
 import tostimannetje.landleven.network.MessageCoinsToClient;
 import tostimannetje.landleven.network.MessageQuestToClient;
@@ -90,6 +93,20 @@ public class EventHandler {
 		
 		NetworkHandler.sendToPlayer(new MessageQuestToClient(player), (EntityPlayerMP) player);
 		NetworkHandler.sendToPlayer(new MessageCoinsToClient(player), (EntityPlayerMP) player);
+	}
+	
+	@SubscribeEvent
+	public void onCropHarvest(BlockEvent.HarvestDropsEvent event) {
+		if(event.getState().getBlock() instanceof BlockCrops) {
+			if(event.getWorld().getBlockState(new BlockPos(event.getPos().getX(), event.getPos().getY()-1, event.getPos().getZ()))
+					.getBlock() == ModBlocks.blockFertilizedLand){
+				System.out.println("DROPS");
+				int length = event.getDrops().size(); 
+				for(int i = 0; i < length; i++) {
+					event.getDrops().add(event.getDrops().get(i));
+				}
+			}
+		}
 	}
 	
 }

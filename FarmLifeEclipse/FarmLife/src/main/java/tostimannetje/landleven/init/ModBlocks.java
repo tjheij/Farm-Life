@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import tostimannetje.landleven.Reference;
 import tostimannetje.landleven.blocks.BlockCrop;
+import tostimannetje.landleven.blocks.BlockFertilizedLand;
 import tostimannetje.landleven.blocks.BlockMarket;
 import tostimannetje.landleven.blocks.BlockSapling;
 import tostimannetje.landleven.blocks.BlockStore;
@@ -153,6 +154,7 @@ public class ModBlocks {
 	public static BlockTreeLeaf leafCoconut = new BlockTreeLeaf("leaf_coconut");
 	public static BlockTreeLog logCoconut = new BlockTreeLog("log_coconut", ModItems.itemCoconut);
 	
+	public static BlockFertilizedLand blockFertilizedLand = new BlockFertilizedLand("block_fertilized_land");
 	public static BlockStore blockStore = new BlockStore("store_block", Material.ROCK, 0);
 	public static BlockMarket blockMarket = new BlockMarket("market_block", Material.ROCK, 1);
 	public static BlockWinemachine wineMachine = new BlockWinemachine("machine_wine", 2);
@@ -277,6 +279,7 @@ public class ModBlocks {
 		BLOCKS.add(animalTurkey);
 		BLOCKS.add(animalDuck);
 		
+		BLOCKS.add(blockFertilizedLand);
 		BLOCKS.add(blockStore);
 		BLOCKS.add(blockMarket);
 		BLOCKS.add(cookieMachine);

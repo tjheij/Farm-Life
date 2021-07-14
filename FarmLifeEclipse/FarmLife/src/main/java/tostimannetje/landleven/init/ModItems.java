@@ -15,6 +15,7 @@ import tostimannetje.landleven.items.ItemAnimalProduct;
 import tostimannetje.landleven.items.ItemBase;
 import tostimannetje.landleven.items.ItemChip;
 import tostimannetje.landleven.items.ItemCropProduct;
+import tostimannetje.landleven.items.ItemFertilizer;
 import tostimannetje.landleven.items.ItemProduct;
 import tostimannetje.landleven.items.ItemQuestbook;
 import tostimannetje.landleven.items.ItemSeed;
@@ -51,6 +52,7 @@ public class ModItems {
 	public static ItemBase itemFruitBasket = new ItemBase("item_fruitbasket");
 	public static ItemQuestbook itemQuestbook = new ItemQuestbook("item_questbook");
 	public static ItemStartingPouch itemStartingPouch = new ItemStartingPouch("item_startingpouch");
+	public static ItemBase itemFertilizer = new ItemFertilizer("item_fertilizer");
 	
 	public static ItemCropProduct itemWheat = new ItemCropProduct("item_wheat", 48, false);  
 	public static ItemCropProduct itemClover = new ItemCropProduct("item_clover", 20, false);  
@@ -234,6 +236,7 @@ public class ModItems {
 		ITEMS.add(itemFruitBasket);
 		ITEMS.add(itemQuestbook);
 		ITEMS.add(itemStartingPouch);
+		ITEMS.add(itemFertilizer);
 		
 		SEEDS.add(itemSeedsWheat);
 		SEEDS.add(itemSeedsClover);
