@@ -5,14 +5,17 @@ import net.minecraft.inventory.Container;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
+import net.minecraftforge.items.CapabilityItemHandler;
 import tostimannetje.landleven.container.ContainerAnimal;
 import tostimannetje.landleven.container.ContainerMachine;
 import tostimannetje.landleven.container.ContainerMarket;
+import tostimannetje.landleven.container.ContainerSeedBag;
 import tostimannetje.landleven.container.ContainerStore;
 import tostimannetje.landleven.gui.GuiAnimal;
 import tostimannetje.landleven.gui.GuiMachine;
 import tostimannetje.landleven.gui.GuiMarket;
 import tostimannetje.landleven.gui.GuiQuestbook;
+import tostimannetje.landleven.gui.GuiSeedBag;
 import tostimannetje.landleven.gui.GuiStore;
 import tostimannetje.landleven.tileentity.TileEntityAnimal;
 import tostimannetje.landleven.tileentity.TileEntityMachine;
@@ -23,7 +26,9 @@ public class GuiHandler implements IGuiHandler{
 	
 	@Override
 	public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		if(ID == -1) {
+		if(ID == -2) {
+			return new ContainerSeedBag(player.inventory, player.getHeldItemMainhand().getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null));
+		}else if(ID == -1) {
 			return null;
 		}else if(ID == 0) {
 			return new ContainerStore(player.inventory, (TileEntityStore)world.getTileEntity(new BlockPos(x, y, z)));
@@ -40,7 +45,9 @@ public class GuiHandler implements IGuiHandler{
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		if(ID == -1) {
+		if(ID == -2) {
+			return new GuiSeedBag(player.inventory, getServerGuiElement(ID, player, world, x, y, z));
+		}else if(ID == -1) {
 			return new GuiQuestbook();
 		}else if(ID == 0) {
 			return new GuiStore(getServerGuiElement(ID, player, world, x, y, z));

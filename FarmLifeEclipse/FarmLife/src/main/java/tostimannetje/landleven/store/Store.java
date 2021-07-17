@@ -5,6 +5,7 @@ import java.util.List;
 
 import tostimannetje.landleven.init.ModBlocks;
 import tostimannetje.landleven.init.ModItems;
+import tostimannetje.landleven.items.IHasPrice;
 
 public class Store {
 
@@ -24,6 +25,9 @@ public class Store {
 		
 		StoreSection chipSection = new StoreSectionItems("Chips", ModItems.CHIPS);
 		storeSections.add(chipSection);
+		
+		StoreSection otherSection = new StoreSectionItems("Other", ModItems.CHIPS);
+		//storeSections.add(otherSection);
 	}
 	
 	public static List<StoreSection> getStoreSections() {
@@ -36,5 +40,11 @@ public class Store {
 			total += section.getSectionPageCount();
 		}
 		return total;
+	}
+	
+	public static List<IHasPrice> getOtherList(){
+		List<IHasPrice> result = new ArrayList<>();
+		result.add((IHasPrice)ModItems.itemFertilizer);
+		return result;
 	}
 }

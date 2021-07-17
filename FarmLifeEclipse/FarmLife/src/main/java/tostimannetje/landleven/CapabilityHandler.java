@@ -13,8 +13,8 @@ public class CapabilityHandler{
 
 	@SubscribeEvent
 	public void attachCapability(@SuppressWarnings("rawtypes") AttachCapabilitiesEvent event){
-		if (!(event.getObject() instanceof EntityPlayer)) return;
-		
-		event.addCapability(QUEST, new QuestProvider((EntityPlayer)event.getObject()));
+		if (event.getObject() instanceof EntityPlayer) {
+			event.addCapability(QUEST, new QuestProvider((EntityPlayer)event.getObject()));
+		}
 	}
 }

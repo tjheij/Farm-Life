@@ -2,6 +2,7 @@ item.item_inspector.name=Inspector
 item.item_fruitbasket.name=Fruit Basket
 item.item_questbook.name=Questbook
 item.item_startingpouch.name=Starting Pouch
+item.item_seed_bag.name=Seed Bag
 item.item_fertilizer.name=Fertilizer
 
 item.item_wheat.name=Wheat
@@ -208,6 +209,7 @@ tile.machine_pancake.name=Pancake Machine
 tile.machine_cornflake.name=Cornflake Machine
 
 tile.building_mill.name=Mill
+container.seedbag.name=Seed Bag
 
 itemGroup.farm_lifecrops=Farm Life Seeds & Crops
 itemGroup.farm_lifetrees=Farm Life Trees & Animals
