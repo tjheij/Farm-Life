@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import tostimannetje.landleven.init.GuiHandler;
 import tostimannetje.landleven.init.ModBlocks;
+import tostimannetje.landleven.init.ModEntities;
 import tostimannetje.landleven.init.ModItems;
 import tostimannetje.landleven.init.ModTrees;
 import tostimannetje.landleven.questing.IQuest;
@@ -23,6 +24,8 @@ public class RegistryHandler {
 		ModItems.init();
 		Store.storeInit();
 		RecipeHandler.init();
+		ModEntities.init();
+		RenderHandler.registerEntityRenders();
 	}
 
 	public static void initRegistries() {

@@ -21,6 +21,7 @@ import tostimannetje.landleven.items.ItemQuestbook;
 import tostimannetje.landleven.items.ItemSeed;
 import tostimannetje.landleven.items.ItemSeedBag;
 import tostimannetje.landleven.items.ItemStartingPouch;
+import tostimannetje.landleven.items.ItemTractor;
 import tostimannetje.landleven.items.ItemTreeProduct;
 
 @Mod.EventBusSubscriber(modid=Reference.MODID)
@@ -55,6 +56,7 @@ public class ModItems {
 	public static ItemStartingPouch itemStartingPouch = new ItemStartingPouch("item_startingpouch");
 	public static ItemSeedBag itemSeedBag = new ItemSeedBag("item_seed_bag");
 	public static ItemBase itemFertilizer = new ItemFertilizer("item_fertilizer", 50);
+	public static ItemBase itemTractor = new ItemTractor("item_tractor");
 	
 	public static ItemCropProduct itemWheat = new ItemCropProduct("item_wheat", 48, false);  
 	public static ItemCropProduct itemClover = new ItemCropProduct("item_clover", 20, false);  
@@ -240,6 +242,7 @@ public class ModItems {
 		ITEMS.add(itemStartingPouch);
 		ITEMS.add(itemSeedBag);
 		ITEMS.add(itemFertilizer);
+		ITEMS.add(itemTractor);
 		
 		SEEDS.add(itemSeedsWheat);
 		SEEDS.add(itemSeedsClover);
