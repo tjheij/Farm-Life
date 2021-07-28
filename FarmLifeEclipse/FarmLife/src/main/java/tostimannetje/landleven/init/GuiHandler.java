@@ -11,12 +11,14 @@ import tostimannetje.landleven.container.ContainerMachine;
 import tostimannetje.landleven.container.ContainerMarket;
 import tostimannetje.landleven.container.ContainerSeedBag;
 import tostimannetje.landleven.container.ContainerStore;
+import tostimannetje.landleven.container.ContainerTractor;
 import tostimannetje.landleven.gui.GuiAnimal;
 import tostimannetje.landleven.gui.GuiMachine;
 import tostimannetje.landleven.gui.GuiMarket;
 import tostimannetje.landleven.gui.GuiQuestbook;
 import tostimannetje.landleven.gui.GuiSeedBag;
 import tostimannetje.landleven.gui.GuiStore;
+import tostimannetje.landleven.gui.GuiTractor;
 import tostimannetje.landleven.tileentity.TileEntityAnimal;
 import tostimannetje.landleven.tileentity.TileEntityMachine;
 import tostimannetje.landleven.tileentity.TileEntityMarket;
@@ -38,6 +40,8 @@ public class GuiHandler implements IGuiHandler{
 			return new ContainerMachine(player.inventory, (TileEntityMachine)world.getTileEntity(new BlockPos(x, y, z)));
 		}else if (ID < 2000) {
 			return new ContainerAnimal(player.inventory, (TileEntityAnimal)world.getTileEntity(new BlockPos(x, y, z)));
+		}else if(ID == 3000){
+			return new ContainerTractor(player.inventory, world.getEntityByID(x).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null));
 		}else {
 			return null;
 		}
@@ -57,6 +61,8 @@ public class GuiHandler implements IGuiHandler{
 			return new GuiMachine(player.inventory, getServerGuiElement(ID, player, world, x, y, z),  (TileEntityMachine) world.getTileEntity(new BlockPos(x, y, z)));	
 		}else if(ID < 2000) {
 			return new GuiAnimal(player.inventory, getServerGuiElement(ID, player, world, x, y, z),  (TileEntityAnimal) world.getTileEntity(new BlockPos(x, y, z)));
+		}else if(ID == 3000){
+			return new GuiTractor(player.inventory, getServerGuiElement(ID, player, world, x, y, z));
 		}else {
 			return null;
 		}

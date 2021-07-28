@@ -15,24 +15,31 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
+import tostimannetje.landleven.Main;
 import tostimannetje.landleven.init.ModItems;
 
 public class EntityTractor extends Entity{
 
 	private static final DataParameter<Float> DAMAGE = EntityDataManager.<Float>createKey(EntityTractor.class, DataSerializers.FLOAT);
 	private final float speed = 0.35f;
+	private ItemStackHandler itemHandler;
 	
 	public EntityTractor(World worldIn) {
 		super(worldIn);
 		this.stepHeight = 1.0F;
 		this.setSize(2.1F, 1.5F);
+		this.itemHandler = new ItemStackHandler(27);
 	}
 	
 	public EntityTractor(World worldIn, double x, double y, double z) {
@@ -60,7 +67,8 @@ public class EntityTractor extends Entity{
         if (super.processInitialInteract(player, hand)) return true;
 
         if (player.isSneaking()) {
-            return false;
+        	player.openGui(Main.instance, 3000, world, this.getEntityId(), 0, 0);
+            return true;
         } else if (this.isBeingRidden()) {
             return true;
         } else{
@@ -182,16 +190,6 @@ public class EntityTractor extends Entity{
     public boolean canBePushed() {
         return false;
     }
-	
-	@Override
-	protected void readEntityFromNBT(NBTTagCompound compound) {
-		
-	}
-
-	@Override
-	protected void writeEntityToNBT(NBTTagCompound compound) {
-		
-	}
 
 	public void setPosition(double x, double y, double z) {
         this.posX = x;
@@ -276,4 +274,29 @@ public class EntityTractor extends Entity{
         this.motionZ *= (double)f6;
         blockpos$pooledmutableblockpos.release();
     }
+	
+	@SuppressWarnings("unchecked")
+    @Override
+    @Nullable
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
+    {
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return (T) itemHandler;
+        return super.getCapability(capability, facing);
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
+    {
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+    }
+
+	@Override
+	protected void readEntityFromNBT(NBTTagCompound compound) { 
+		itemHandler.deserializeNBT(compound.getCompoundTag("itemhandler"));
+	}
+
+	@Override
+	protected void writeEntityToNBT(NBTTagCompound compound) { 
+		compound.setTag("itemhandler", itemHandler.serializeNBT());
+	}
 }

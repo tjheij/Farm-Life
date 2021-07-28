@@ -211,6 +211,7 @@ tile.machine_cornflake.name=Cornflake Machine
 
 tile.building_mill.name=Mill
 container.seedbag.name=Seed Bag
+container.tractor.name=Tractor
 
 itemGroup.farm_lifecrops=Farm Life Seeds & Crops
 itemGroup.farm_lifetrees=Farm Life Trees & Animals
