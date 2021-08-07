@@ -37,10 +37,11 @@ public class BlockFertilizedLand extends BlockFarmland{
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable){
         EnumPlantType plantType = plantable.getPlantType(world, pos.offset(direction));
 
-        if(plantType == EnumPlantType.Crop) {
+        if(plantType == EnumPlantType.Crop || plantType == EnumPlantType.Plains) {
         	return true;
         }
-
+        
+        System.out.println(plantType.toString());
         return false;
     }
 }

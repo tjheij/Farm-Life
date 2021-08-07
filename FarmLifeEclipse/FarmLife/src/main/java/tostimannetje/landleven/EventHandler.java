@@ -97,13 +97,14 @@ public class EventHandler {
 	
 	@SubscribeEvent
 	public void onCropHarvest(BlockEvent.HarvestDropsEvent event) {
+		//If a crop is harvested that is max age and has fertilized land as soil, it's drops are doubled
 		if(event.getState().getBlock() instanceof BlockCrops) {
-			if(event.getWorld().getBlockState(new BlockPos(event.getPos().getX(), event.getPos().getY()-1, event.getPos().getZ()))
-					.getBlock() == ModBlocks.blockFertilizedLand){
-				System.out.println("DROPS");
-				int length = event.getDrops().size(); 
-				for(int i = 0; i < length; i++) {
-					event.getDrops().add(event.getDrops().get(i));
+			if(((BlockCrops)event.getState().getBlock()).isMaxAge(event.getState())) {
+				if(event.getWorld().getBlockState(event.getPos().down()).getBlock() == ModBlocks.blockFertilizedLand){
+					int length = event.getDrops().size(); 
+					for(int i = 0; i < length; i++) {
+						event.getDrops().add(event.getDrops().get(i));
+					}
 				}
 			}
 		}
