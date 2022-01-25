@@ -26,6 +26,7 @@ public class Store {
 		StoreSection chipSection = new StoreSectionItems("Chips", ModItems.CHIPS);
 		storeSections.add(chipSection);
 		
+		@SuppressWarnings("unused")
 		StoreSection otherSection = new StoreSectionItems("Other", ModItems.CHIPS);
 		//storeSections.add(otherSection);
 	}

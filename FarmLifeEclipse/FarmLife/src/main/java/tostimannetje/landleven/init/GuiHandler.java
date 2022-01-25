@@ -12,6 +12,7 @@ import tostimannetje.landleven.container.ContainerMarket;
 import tostimannetje.landleven.container.ContainerSeedBag;
 import tostimannetje.landleven.container.ContainerStore;
 import tostimannetje.landleven.container.ContainerTractor;
+import tostimannetje.landleven.entity.EntityTractor;
 import tostimannetje.landleven.gui.GuiAnimal;
 import tostimannetje.landleven.gui.GuiMachine;
 import tostimannetje.landleven.gui.GuiMarket;
@@ -33,15 +34,15 @@ public class GuiHandler implements IGuiHandler{
 		}else if(ID == -1) {
 			return null;
 		}else if(ID == 0) {
-			return new ContainerStore(player.inventory, (TileEntityStore)world.getTileEntity(new BlockPos(x, y, z)));
+			return new ContainerStore(player.inventory, (TileEntityStore) world.getTileEntity(new BlockPos(x, y, z)));
 		}else if(ID == 1) {
-			return new ContainerMarket(player.inventory, (TileEntityMarket)world.getTileEntity(new BlockPos(x, y, z)));
+			return new ContainerMarket(player.inventory, (TileEntityMarket) world.getTileEntity(new BlockPos(x, y, z)));
 		}else if(ID < 1000) {
-			return new ContainerMachine(player.inventory, (TileEntityMachine)world.getTileEntity(new BlockPos(x, y, z)));
+			return new ContainerMachine(player.inventory, (TileEntityMachine) world.getTileEntity(new BlockPos(x, y, z)));
 		}else if (ID < 2000) {
-			return new ContainerAnimal(player.inventory, (TileEntityAnimal)world.getTileEntity(new BlockPos(x, y, z)));
+			return new ContainerAnimal(player.inventory, (TileEntityAnimal) world.getTileEntity(new BlockPos(x, y, z)));
 		}else if(ID == 3000){
-			return new ContainerTractor(player.inventory, world.getEntityByID(x).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null));
+			return new ContainerTractor(player.inventory, (EntityTractor) world.getEntityByID(x));
 		}else {
 			return null;
 		}
@@ -62,7 +63,7 @@ public class GuiHandler implements IGuiHandler{
 		}else if(ID < 2000) {
 			return new GuiAnimal(player.inventory, getServerGuiElement(ID, player, world, x, y, z),  (TileEntityAnimal) world.getTileEntity(new BlockPos(x, y, z)));
 		}else if(ID == 3000){
-			return new GuiTractor(player.inventory, getServerGuiElement(ID, player, world, x, y, z));
+			return new GuiTractor(player.inventory, getServerGuiElement(ID, player, world, x, y, z), (EntityTractor) world.getEntityByID(x));
 		}else {
 			return null;
 		}

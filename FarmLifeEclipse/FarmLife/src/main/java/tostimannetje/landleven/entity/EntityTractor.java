@@ -4,13 +4,18 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,6 +30,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -37,8 +43,10 @@ import tostimannetje.landleven.init.ModItems;
 public class EntityTractor extends Entity{
 
 	private static final DataParameter<Float> DAMAGE = EntityDataManager.<Float>createKey(EntityTractor.class, DataSerializers.FLOAT);
-	private final float speed = 0.35f;
+	private final float speed = 0.25f;
 	private ItemStackHandler itemHandler;
+	private ItemStackHandler harvestHandler;
+	private ItemStackHandler fertilizerHandler;
 	private TractorModes mode;
 	
 	public EntityTractor(World worldIn) {
@@ -46,6 +54,8 @@ public class EntityTractor extends Entity{
 		this.stepHeight = 1.0F;
 		this.setSize(2.1F, 1.5F);
 		this.itemHandler = new ItemStackHandler(27);
+		this.harvestHandler = new ItemStackHandler(27);
+		this.fertilizerHandler = new ItemStackHandler(9);
 		this.setTractorMode(TractorModes.PLANTING);
 	}
 	
@@ -162,7 +172,7 @@ public class EntityTractor extends Entity{
 
     public void killTractor(DamageSource source) {
         this.setDead();
-
+        
         if (this.world.getGameRules().getBoolean("doEntityDrops")) {
             ItemStack itemstack = new ItemStack(ModItems.itemTractor, 1);
 
@@ -220,6 +230,7 @@ public class EntityTractor extends Entity{
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
         
+        //Update movement
         if (this.canPassengerSteer()) {
         	if(this.getControllingPassenger() instanceof EntityLivingBase) {
 	        	EntityLivingBase entitylivingbase = (EntityLivingBase)this.getControllingPassenger();
@@ -242,13 +253,23 @@ public class EntityTractor extends Entity{
             this.motionZ = 0.0D;
         }
         
+        //Suck up items into harvest inventory
+        if (!this.world.isRemote && ForgeEventFactory.getMobGriefingEvent(this.world, this)) {
+            for (EntityItem entityitem : this.world.getEntitiesWithinAABB(EntityItem.class, this.getEntityBoundingBox().grow(1.0D, 0.0D, 1.0D))) {
+                if (!entityitem.isDead && !entityitem.getItem().isEmpty() && !entityitem.cannotPickup()) {
+                    this.pickupItem(entityitem);
+                }
+            }
+        }
+        
+        //Depending on the mode, plant seeds/harvest crops/fertilize farmland
         if(this.isBeingRidden()) {
 	        int blockPosX = (int)Math.floor(this.posX);
 	        int blockPosY = (int)Math.floor(this.posY);
 	        int blockPosZ = (int)Math.floor(this.posZ);
 	        
-	        for(int i = -1; i < 2; i++) {
-				for(int j = -1; j < 2; j++) {
+	        for(int i = -2; i < 3; i++) {
+				for(int j = -2; j < 3; j++) {
 					for(int k = -1; k < 1; k++) {
 						BlockPos checkPos = new BlockPos(blockPosX + i, blockPosY + k, blockPosZ + j);
 						BlockPos cropPos = checkPos.up();
@@ -257,7 +278,12 @@ public class EntityTractor extends Entity{
 						//Fertilize needs farmland and air
 						if(world.getBlockState(checkPos).getBlock() == Blocks.FARMLAND || world.getBlockState(checkPos).getBlock() == ModBlocks.blockFertilizedLand) {
 							if(this.getTractorMode() == TractorModes.HARVESTING && world.getBlockState(cropPos).getBlock() instanceof BlockCrops) {
-								harvestCrop();
+								harvestCrop(world.getBlockState(cropPos), world, cropPos, (EntityPlayer)this.getControllingPassenger());
+								continue;
+							}
+							
+							if(this.getTractorMode() == TractorModes.FERTILIZING && world.getBlockState(cropPos).getBlock() instanceof BlockCrops) {
+								bonemeal((IItemHandler)this.fertilizerHandler, world, checkPos);
 								continue;
 							}
 							
@@ -267,8 +293,9 @@ public class EntityTractor extends Entity{
 									continue;
 								}
 								
-								if(this.getTractorMode() == TractorModes.FERTILIZING && world.getBlockState(checkPos).getBlock() == Blocks.FARMLAND) {
-									fertilize();
+								if(this.getTractorMode() == TractorModes.FERTILIZING 
+										&& world.getBlockState(checkPos).getBlock() == Blocks.FARMLAND) {
+									fertilize((IItemHandler)this.fertilizerHandler, world, checkPos);
 									continue;
 								}
 							}
@@ -279,32 +306,145 @@ public class EntityTractor extends Entity{
         }
 	}
     
+	private void pickupItem(EntityItem itemEntity) {
+		ItemStack entityStack = itemEntity.getItem();
+		
+		//Insert item in existing stack if possible
+		int slot = isItemInInventory(entityStack.getItem(), this.harvestHandler);
+		if(slot != -1) {
+			entityStack = this.harvestHandler.insertItem(slot, entityStack, false);
+			if(entityStack.getCount() <= 0) {
+				itemEntity.setDead();
+				return;
+			}
+		}
+		
+		//Insert remainder in empty stack if possible
+		if(!entityStack.isEmpty()) {
+			for(int i = 0; i < this.harvestHandler.getSlots(); i++) {
+				if(this.harvestHandler.getStackInSlot(i).isEmpty()) {
+					entityStack = this.harvestHandler.insertItem(i, entityStack, false);
+					if(entityStack.getCount() <= 0) {
+						itemEntity.setDead();
+						return;
+					}
+				}
+			}
+		}
+		
+		//Leave remainder in itemEntity if inventory is full
+		if(!entityStack.isEmpty()) {
+			//itemEntity.getDataManager().set(EntityDataManager.<ItemStack>createKey(EntityItem.class, DataSerializers.ITEM_STACK), entityStack);
+		}
+	}
+	
+	private int isItemInInventory(Item item, ItemStackHandler handler) {
+		for(int i = 0; i < handler.getSlots(); i++) {
+			ItemStack stack = handler.getStackInSlot(i);
+			if(!stack.isEmpty()) {
+				if(stack.getItem() == item) {
+					if(stack.getCount() < stack.getMaxStackSize()) {
+						return i;
+					}
+				}
+			}
+		}
+		
+		return -1;
+	}
+	
 	//Called to plant a seed from the IItemHandler at checkPos
 	private void plantSeed(IItemHandler bag, World world, BlockPos cropPos) {
 		for(int k = 0;  k < bag.getSlots(); k++) {
 			if(!bag.getStackInSlot(k).isEmpty()) {
 				//If the seed is planted successfully, the block should update and the seed should be removed
 				IBlockState toPlant = ((ItemSeeds) bag.getStackInSlot(k).getItem()).getPlant(world, cropPos);
-				//if (toPlant.getBlock().canPlaceBlockAt(world, cropPos)) {
-		            world.setBlockState(cropPos, toPlant);
-		            world.markBlockRangeForRenderUpdate(cropPos, cropPos);
-					world.notifyBlockUpdate(cropPos, Blocks.AIR.getDefaultState(), world.getBlockState(cropPos), 3);
-					world.scheduleBlockUpdate(cropPos, world.getBlockState(cropPos).getBlock(),0,0);
-					bag.extractItem(k, 1, false);
-					break;
-		        //}else {
-		        //	System.out.println("Cant place here");
-		        //}
+	            world.setBlockState(cropPos, toPlant);
+	            world.markBlockRangeForRenderUpdate(cropPos, cropPos);
+				world.notifyBlockUpdate(cropPos, Blocks.AIR.getDefaultState(), world.getBlockState(cropPos), 3);
+				world.scheduleBlockUpdate(cropPos, world.getBlockState(cropPos).getBlock(),0,0);
+				bag.extractItem(k, 1, false);
+				break;
 			}
 		}
 	}
 	
-	private void fertilize() {
-		
+	private void bonemeal(IItemHandler bag, World world, BlockPos checkPos) {
+		for(int k = 0;  k < bag.getSlots(); k++) {
+			if(!bag.getStackInSlot(k).isEmpty()) {
+				
+				if(bag.getStackInSlot(k).getItem() == Items.DYE) {
+					if(!applyBonemeal(bag.getStackInSlot(k), world, checkPos.up())) {
+						return;
+					}
+				}
+				
+				bag.extractItem(k, 1, false);
+				break;
+			}
+		}
 	}
 	
-	private void harvestCrop() {
-		
+	private void fertilize(IItemHandler bag, World world, BlockPos checkPos) {
+		for(int k = 0;  k < bag.getSlots(); k++) {
+			if(!bag.getStackInSlot(k).isEmpty()) {
+				
+				if (bag.getStackInSlot(k).getItem() == ModItems.itemFertilizer) {
+					if(!applyFertilizer(bag.getStackInSlot(k), world, checkPos)) {
+						return;
+					}
+				}
+				
+				bag.extractItem(k, 1, false);
+				break;
+			}
+		}
+	}
+	
+	private boolean applyFertilizer(ItemStack stack, World worldIn, BlockPos target){
+
+        Block block = worldIn.getBlockState(target).getBlock();
+		if(block == Blocks.FARMLAND) {
+			worldIn.setBlockState(target, ModBlocks.blockFertilizedLand.getDefaultState());
+			return true;
+		}
+
+        return false;
+    }
+	
+	private boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos target){
+        IBlockState iblockstate = worldIn.getBlockState(target);
+        int hook = net.minecraftforge.event.ForgeEventFactory.onApplyBonemeal((EntityPlayer) this.getControllingPassenger(), worldIn, target, iblockstate, stack, null);
+        if (hook != 0) return hook > 0;
+
+        if (iblockstate.getBlock() instanceof IGrowable) {
+            IGrowable igrowable = (IGrowable)iblockstate.getBlock();
+            if (igrowable.canGrow(worldIn, target, iblockstate, worldIn.isRemote)) {
+                if (!worldIn.isRemote){
+                    if (igrowable.canUseBonemeal(worldIn, worldIn.rand, target, iblockstate)) {
+                        igrowable.grow(worldIn, worldIn.rand, target, iblockstate);
+                    }
+                }
+                return true;
+            }
+        }
+
+        return false;
+    }
+	
+	private void harvestCrop(IBlockState crop, World world, BlockPos cropPos, EntityPlayer player) {
+		if(!world.isRemote) {
+			if(crop.getBlock() instanceof BlockCrops) {
+				BlockCrops blockCrop = (BlockCrops)crop.getBlock();
+				if(blockCrop.isMaxAge(crop)) {
+					blockCrop.harvestBlock(world, player, cropPos, crop, null, new ItemStack(ModItems.itemTractor));
+					world.setBlockState(cropPos, Blocks.AIR.getDefaultState());
+		            world.markBlockRangeForRenderUpdate(cropPos, cropPos);
+					world.notifyBlockUpdate(cropPos, crop, world.getBlockState(cropPos), 3);
+					world.scheduleBlockUpdate(cropPos, world.getBlockState(cropPos).getBlock(),0,0);
+				}
+			}
+		}
 	}
 	
 	public void travel(float strafe, float vertical, float forward) {
@@ -349,9 +489,24 @@ public class EntityTractor extends Entity{
 	@SuppressWarnings("unchecked")
     @Override
     @Nullable
-    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
-    {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return (T) itemHandler;
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        	switch(facing) {
+        	case UP:
+        		return (T) itemHandler;
+        	case DOWN:
+        		return (T) harvestHandler;
+        	case NORTH:
+        		return (T) fertilizerHandler;
+			case EAST:
+				break;
+			case SOUTH:
+				break;
+			case WEST:
+				break;
+        	}
+        	
+        }
         return super.getCapability(capability, facing);
     }
 
@@ -364,11 +519,24 @@ public class EntityTractor extends Entity{
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound) { 
 		itemHandler.deserializeNBT(compound.getCompoundTag("itemhandler"));
+		harvestHandler.deserializeNBT(compound.getCompoundTag("harvesthandler"));
+		fertilizerHandler.deserializeNBT(compound.getCompoundTag("fertilizerhandler"));
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound) { 
+		if(itemHandler == null) {
+			itemHandler = new ItemStackHandler(27);
+			harvestHandler = new ItemStackHandler(27);
+			fertilizerHandler = new ItemStackHandler(9);
+		}
 		compound.setTag("itemhandler", itemHandler.serializeNBT());
+		compound.setTag("harvesthandler", harvestHandler.serializeNBT());
+		compound.setTag("fertilizerhandler", fertilizerHandler.serializeNBT());
+	}
+	
+	public void receiveButtonEvent(int id) {
+		setTractorMode(TractorModes.values()[id]);
 	}
 	
 	public TractorModes getTractorMode() {
@@ -376,13 +544,22 @@ public class EntityTractor extends Entity{
 	}
 	
 	public void setTractorMode(TractorModes mode) {
-		System.out.println("Setting Tractor mode to: " + mode.toString());
 		this.mode = mode;
 	}
 	
-	private enum TractorModes{
-		PLANTING,
-		HARVESTING,
-		FERTILIZING
+	public enum TractorModes{
+		PLANTING(0),
+		HARVESTING(1),
+		FERTILIZING(2);
+		
+		private final int value;
+		
+	    private TractorModes(int value) {
+	        this.value = value;
+	    }
+
+	    public int getValue() {
+	        return value;
+	    }
 	}
 }

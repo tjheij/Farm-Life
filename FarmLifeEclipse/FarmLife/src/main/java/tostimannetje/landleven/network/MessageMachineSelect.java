@@ -6,6 +6,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import tostimannetje.landleven.container.ContainerMachine;
+import tostimannetje.landleven.container.ContainerTractor;
+import tostimannetje.landleven.entity.EntityTractor;
 import tostimannetje.landleven.tileentity.TileEntityMachine;
 
 public class MessageMachineSelect implements IMessage{
@@ -38,6 +40,10 @@ public class MessageMachineSelect implements IMessage{
 			if(container instanceof ContainerMachine){
 				TileEntityMachine machine = ((ContainerMachine)container).getMachine();
 	            machine.receiveButtonEvent(message.id);
+			} else if(container instanceof ContainerTractor){
+				EntityTractor tractor = ((ContainerTractor)container).getTractor();
+	            tractor.receiveButtonEvent(message.id);
+	            ((ContainerTractor)container).refresh();
 			}
 			return null;
 		}

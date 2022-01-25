@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
@@ -16,6 +17,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.items.ItemHandlerHelper;
+import tostimannetje.landleven.entity.EntityTractor;
 import tostimannetje.landleven.init.ModBlocks;
 import tostimannetje.landleven.init.ModItems;
 import tostimannetje.landleven.network.MessageCoinsToClient;
@@ -100,12 +102,22 @@ public class EventHandler {
 		//If a crop is harvested that is max age and has fertilized land as soil, it's drops are doubled
 		if(event.getState().getBlock() instanceof BlockCrops) {
 			if(((BlockCrops)event.getState().getBlock()).isMaxAge(event.getState())) {
-				if(event.getWorld().getBlockState(event.getPos().down()).getBlock() == ModBlocks.blockFertilizedLand){
-					int length = event.getDrops().size(); 
+				if(event.getWorld().getBlockState(event.getPos().down()).getBlock() == ModBlocks.blockFertilizedLand){ 
+					int length = event.getDrops().size();
 					for(int i = 0; i < length; i++) {
-						event.getDrops().add(event.getDrops().get(i));
+						event.getDrops().add(new ItemStack(event.getDrops().get(i).getItem()));
 					}
 				}
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void onItemPickup(EntityItemPickupEvent event) {
+		//When picking up items while on a tractor, the items should go into the tractor inventory
+		if(event.getEntityPlayer().isRiding()) {
+			if(event.getEntityPlayer().getRidingEntity() instanceof EntityTractor) {
+				event.setCanceled(true);
 			}
 		}
 	}
