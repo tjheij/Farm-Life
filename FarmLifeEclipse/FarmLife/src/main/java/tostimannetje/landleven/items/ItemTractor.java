@@ -1,6 +1,8 @@
 package tostimannetje.landleven.items;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -9,10 +11,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import tostimannetje.landleven.entity.EntityTractor;
 
-public class ItemTractor extends ItemBase{
+public class ItemTractor extends ItemBase implements IHasPrice{
 
-	public ItemTractor(String name) {
+	private int price;
+	
+	public ItemTractor(String name, int price) {
 		super(name);
+		this.price = price;
 		this.setMaxStackSize(1);
 	}
 
@@ -28,5 +33,20 @@ public class ItemTractor extends ItemBase{
 		stack.shrink(1);
 		return EnumActionResult.SUCCESS;
     }
+
+	@Override
+	public Item getItem() {
+		return this;
+	}
+
+	@Override
+	public Block getBlock() {
+		return null;
+	}
+
+	@Override
+	public int getPrice() {
+		return price;
+	}
 	
 }

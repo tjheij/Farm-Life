@@ -3,7 +3,11 @@ package tostimannetje.landleven;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import tostimannetje.landleven.command.CommandResetAllQuests;
+import tostimannetje.landleven.command.CommandResetQuest;
+import tostimannetje.landleven.command.CommandResetQuestLine;
 import tostimannetje.landleven.init.GuiHandler;
 import tostimannetje.landleven.init.ModBlocks;
 import tostimannetje.landleven.init.ModEntities;
@@ -37,5 +41,11 @@ public class RegistryHandler {
 		CapabilityManager.INSTANCE.register(IQuest.class, new QuestStorage(), Quests::new);
 		MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
 		MinecraftForge.EVENT_BUS.register(new EventHandler());
+	}
+	
+	public static void serverRegistries(FMLServerStartingEvent event) {
+		event.registerServerCommand(new CommandResetQuest());
+		event.registerServerCommand(new CommandResetQuestLine());
+		event.registerServerCommand(new CommandResetAllQuests());
 	}
 }

@@ -12,33 +12,43 @@ public class QuestBase {
 	private Item item;
 	private ResourceLocation icon;
 	
+	private QuestType type;
 	private QuestState state = QuestState.NOTSTARTED; 
+	
+	public static enum QuestType{
+		ITEM, SELL
+	}
 	
 	public static enum QuestState{
 		NOTSTARTED, INPROGRESS, COMPLETED
 	}
 	
-	public QuestBase(Item item, int goal, String iconPath) {
+	public QuestBase(QuestType type, Item item, int goal, String iconPath) {
+		this.type = type;
 		this.item = item;
 		this.goal = goal;
 		
 		this.icon = new ResourceLocation(Reference.MODID, "textures/"+iconPath);
 	}
 	
+	public QuestType getQuestType() {
+		return this.type;
+	}
+	
 	public Item getItem() {
-		return item;
+		return this.item;
 	}
 	
 	public int getProgress() {
-		return progress;
+		return this.progress;
 	}
 	
 	public int getGoal() {
-		return goal;
+		return this.goal;
 	}
 	
 	public QuestState getQuestState() {
-		return state;
+		return this.state;
 	}
 	
 	public void setQuestState(QuestState state) {
@@ -63,11 +73,16 @@ public class QuestBase {
 	}
 	
 	public boolean isCompleted() {
-		return progress >= goal;
+		return this.progress >= this.goal;
 	}
 	
 	public void completeQuest() {
 		this.setQuestState(QuestState.COMPLETED);
+	}
+	
+	public void reset() {
+		this.setQuestState(QuestState.NOTSTARTED);
+		this.progress = 0;
 	}
 	
 }

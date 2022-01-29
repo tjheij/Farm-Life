@@ -1,7 +1,7 @@
 {
     "quest_completed": {
         "category": "ambient", 
-        "subtitle": "ll.subtitle.quest_completed", 
-        "sounds": [ {"name":"ll:quest_completed", "stream":true} ]
+        "subtitle": "farm_life.subtitle.quest_completed", 
+        "sounds": [ {"name":"farm_life:quest_completed", "stream":true} ]
     }
 }

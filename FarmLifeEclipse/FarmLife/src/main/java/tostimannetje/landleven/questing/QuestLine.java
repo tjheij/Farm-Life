@@ -6,6 +6,7 @@ import tostimannetje.landleven.Reference;
 
 public class QuestLine {
 	private ArrayList<QuestBase> quests = new ArrayList<QuestBase>();
+	private QuestReward reward;
 	private String name;
 	private String iconPath;
 	private State state = State.NOTSTARTED; 
@@ -26,6 +27,14 @@ public class QuestLine {
 	
 	public QuestBase getQuest(int quest) {
 		return quests.get(quest);
+	}
+	
+	public void addReward(QuestReward reward) {
+		this.reward = reward;
+	}
+	
+	public QuestReward getReward() {
+		return this.reward;
 	}
 	
 	public String getName() {
@@ -58,7 +67,6 @@ public class QuestLine {
 		if(isCompleted()) {
 			this.progress = quests.size();
 		}
-		
 	}
 	
 	public void addProgress() {
@@ -71,5 +79,15 @@ public class QuestLine {
 	
 	public void completeQuestLine() {
 		this.setState(State.COMPLETED);
+	}
+	
+	public void reset() {
+		this.setState(State.NOTSTARTED);
+		this.progress = 0;
+		for(int i = 0; i < this.quests.size(); i++) {
+			if(this.quests.get(i).isCompleted()) {
+				this.progress++;
+			}
+		}
 	}
 }

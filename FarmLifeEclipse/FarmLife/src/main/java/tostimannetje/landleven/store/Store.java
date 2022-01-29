@@ -27,8 +27,8 @@ public class Store {
 		storeSections.add(chipSection);
 		
 		@SuppressWarnings("unused")
-		StoreSection otherSection = new StoreSectionItems("Other", ModItems.CHIPS);
-		//storeSections.add(otherSection);
+		StoreSection rewardSection = new StoreSectionItems("Rewards", getRewardList());
+		//storeSections.add(rewardSection);
 	}
 	
 	public static List<StoreSection> getStoreSections() {
@@ -43,9 +43,11 @@ public class Store {
 		return total;
 	}
 	
-	public static List<IHasPrice> getOtherList(){
+	public static List<IHasPrice> getRewardList(){
 		List<IHasPrice> result = new ArrayList<>();
+		result.add((IHasPrice)ModItems.itemSeedBag);
 		result.add((IHasPrice)ModItems.itemFertilizer);
+		result.add((IHasPrice)ModItems.itemTractor);
 		return result;
 	}
 }

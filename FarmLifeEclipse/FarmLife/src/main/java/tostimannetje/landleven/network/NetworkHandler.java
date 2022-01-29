@@ -20,6 +20,9 @@ public class NetworkHandler {
 		INSTANCE.registerMessage(MessageCoinsToClient.Handler.class, MessageCoinsToClient.class, 5, Side.CLIENT);
 		INSTANCE.registerMessage(MessageQuestToClient.Handler.class, MessageQuestToClient.class, 6, Side.CLIENT);
 		INSTANCE.registerMessage(MessageCoinsToServer.Handler.class, MessageCoinsToServer.class, 7, Side.SERVER);
+		INSTANCE.registerMessage(MessageQuestProgressToClient.Handler.class, MessageQuestProgressToClient.class, 8, Side.CLIENT);
+		INSTANCE.registerMessage(MessageQuestCompletedToClient.Handler.class, MessageQuestCompletedToClient.class, 9, Side.CLIENT);
+		INSTANCE.registerMessage(MessageResetQuestToClient.Handler.class, MessageResetQuestToClient.class, 10, Side.CLIENT);
 	}
 	
 	public static void sendToServer(IMessage message){

@@ -4,8 +4,10 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
@@ -20,12 +22,14 @@ import tostimannetje.landleven.Main;
 import tostimannetje.landleven.container.ISeedBagProvider;
 import tostimannetje.landleven.init.ModBlocks;
 
-public class ItemSeedBag extends ItemBase{
+public class ItemSeedBag extends ItemBase implements IHasPrice{
 
 	private final int numSlots = 27;
+	private int price;
 	
-	public ItemSeedBag(String name) {
+	public ItemSeedBag(String name, int price) {
 		super(name);
+		this.price = price;
 		this.setMaxStackSize(1);
 	}
 
@@ -87,4 +91,22 @@ public class ItemSeedBag extends ItemBase{
 
         return super.onItemRightClick(world, player, hand);
     }
+
+
+	@Override
+	public Item getItem() {
+		return this;
+	}
+
+
+	@Override
+	public Block getBlock() {
+		return null;
+	}
+
+
+	@Override
+	public int getPrice() {
+		return this.price;
+	}
 }

@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import tostimannetje.landleven.network.NetworkHandler;
 import tostimannetje.landleven.proxy.CommonProxy;
 
@@ -33,5 +34,10 @@ public class Main {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		RegistryHandler.postInitRegistries();
+	}
+	
+	@EventHandler
+	public void serverInit(FMLServerStartingEvent event) {
+		RegistryHandler.serverRegistries(event);
 	}
 }

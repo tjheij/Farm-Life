@@ -54,9 +54,9 @@ public class ModItems {
 	public static ItemBase itemFruitBasket = new ItemBase("item_fruitbasket");
 	public static ItemQuestbook itemQuestbook = new ItemQuestbook("item_questbook");
 	public static ItemStartingPouch itemStartingPouch = new ItemStartingPouch("item_startingpouch");
-	public static ItemSeedBag itemSeedBag = new ItemSeedBag("item_seed_bag");
-	public static ItemBase itemFertilizer = new ItemFertilizer("item_fertilizer", 50);
-	public static ItemBase itemTractor = new ItemTractor("item_tractor");
+	public static ItemSeedBag itemSeedBag = new ItemSeedBag("item_seed_bag", 2000);
+	public static ItemBase itemFertilizer = new ItemFertilizer("item_fertilizer", 1000);
+	public static ItemBase itemTractor = new ItemTractor("item_tractor", 100000);
 	
 	public static ItemCropProduct itemWheat = new ItemCropProduct("item_wheat", 48, false);  
 	public static ItemCropProduct itemClover = new ItemCropProduct("item_clover", 20, false);  

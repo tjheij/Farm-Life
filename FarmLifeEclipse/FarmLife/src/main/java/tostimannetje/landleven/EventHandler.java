@@ -21,9 +21,12 @@ import tostimannetje.landleven.entity.EntityTractor;
 import tostimannetje.landleven.init.ModBlocks;
 import tostimannetje.landleven.init.ModItems;
 import tostimannetje.landleven.network.MessageCoinsToClient;
+import tostimannetje.landleven.network.MessageQuestCompletedToClient;
+import tostimannetje.landleven.network.MessageQuestProgressToClient;
 import tostimannetje.landleven.network.MessageQuestToClient;
 import tostimannetje.landleven.network.NetworkHandler;
 import tostimannetje.landleven.questing.IQuest;
+import tostimannetje.landleven.questing.QuestBase;
 import tostimannetje.landleven.questing.QuestProvider;
 
 public class EventHandler {
@@ -34,19 +37,24 @@ public class EventHandler {
     		if(event.phase == Phase.START) {
 			    IQuest quest = event.player.getCapability(QuestProvider.QUEST, null);
 			    if(quest.getActiveQuest() != null) {
+			    	
 		    		//Check if the quest can be completed
 		    		if(quest.getActiveQuest().isCompleted()) {
+		    			QuestBase completed = quest.getActiveQuest();
 		    			String message = "You have completed the quest: Produce " + quest.getActiveQuest().getGoal() + " " 
 		    					+ I18n.format(quest.getActiveQuest().getItem().getUnlocalizedName() + ".name");
 		    			event.player.sendMessage(new TextComponentString(message));
 		    			quest.completeActiveQuest();
+		    			
+		    			//Check if the questline is complete
 		    			if(quest.getActiveQuestLine().isCompleted()) {
 		    				String message2 = "You have completed the quest line: " + quest.getActiveQuestLine().getName();
 			    			event.player.sendMessage(new TextComponentString(message2));
-		    				quest.completeActiveQuestLine();
+			    			quest.completeActiveQuestLine(event.player);
 		    			}
 		    			event.player.world.playSound(null, new BlockPos(event.player.posX, event.player.posY, event.player.posZ), 
 		    					SoundsHandler.questCompleted, SoundCategory.AMBIENT, 1.0f, 1.0f);
+		    			NetworkHandler.sendToPlayer(new MessageQuestCompletedToClient(event.player, completed), (EntityPlayerMP) event.player);
 		    			
 		    		//Check the total amount of quest items in inventory and set progress
 		    		}else {
@@ -56,10 +64,12 @@ public class EventHandler {
 					    		total += event.player.inventory.getStackInSlot(i).getCount();
 					    	}
 					    }
-					    quest.getActiveQuest().setProgress(total);
+					    
+					    if(total > quest.getActiveQuest().getProgress()) {
+					    	quest.getActiveQuest().setProgress(total);
+					    	NetworkHandler.sendToPlayer(new MessageQuestProgressToClient(event.player, quest.getActiveQuest()), (EntityPlayerMP) event.player);
+					    }
 		    		}
-		    		
-		    		NetworkHandler.sendToPlayer(new MessageQuestToClient(event.player), (EntityPlayerMP) event.player);
 			    }
     		}
     	}

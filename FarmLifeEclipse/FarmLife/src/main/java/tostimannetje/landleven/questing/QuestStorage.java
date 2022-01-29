@@ -23,6 +23,7 @@ public class QuestStorage implements IStorage<IQuest>{
         }
 		NBTTagCompound nbtCoins = new NBTTagCompound();
 		nbtCoins.setInteger("Coins", instance.getCoins());
+		nbtCoins.setInteger("QuestLevel", instance.getQuestLevel());
 		nbtCoins.setBoolean("FirstTime", instance.getFirstTime());
 		nbtTagListIn.appendTag(nbtCoins);
 		
@@ -42,6 +43,7 @@ public class QuestStorage implements IStorage<IQuest>{
             	instance.getQuest(i,j).setQuestState(QuestState.valueOf(nbttagcompound.getString("Quest"+i+"-"+j)));
             	if(instance.getQuest(i,j).getQuestState() == QuestState.COMPLETED) {
             		instance.getQuest(i,j).setProgress(instance.getQuest(i,j).getGoal());
+            		instance.getQuestLine(i).addProgress();
             	}
             	if(instance.getQuestLines().get(i).getQuests().size()-1 > j) {
             		j++;
@@ -53,6 +55,7 @@ public class QuestStorage implements IStorage<IQuest>{
         }
 		NBTTagCompound nbtCoins = nbtTagListIn.getCompoundTagAt(nbtTagListIn.tagCount()-1);
 		instance.setCoins(nbtCoins.getInteger("Coins"));
+		instance.setQuestLevel(nbtCoins.getInteger("QuestLevel"));
 		instance.setFirstTime(nbtCoins.getBoolean("FirstTime"));
 	}
 
