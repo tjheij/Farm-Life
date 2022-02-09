@@ -26,9 +26,8 @@ public class Store {
 		StoreSection chipSection = new StoreSectionItems("Chips", ModItems.CHIPS);
 		storeSections.add(chipSection);
 		
-		@SuppressWarnings("unused")
 		StoreSection rewardSection = new StoreSectionItems("Rewards", getRewardList());
-		//storeSections.add(rewardSection);
+		storeSections.add(rewardSection);
 	}
 	
 	public static List<StoreSection> getStoreSections() {

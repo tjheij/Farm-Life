@@ -3,9 +3,12 @@ package tostimannetje.landleven.questing;
 import java.util.ArrayList;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.text.TextComponentString;
 import tostimannetje.landleven.init.ModBlocks;
 import tostimannetje.landleven.init.ModItems;
+import tostimannetje.landleven.network.MessageCoinsToClient;
+import tostimannetje.landleven.network.NetworkHandler;
 import tostimannetje.landleven.questing.QuestLine.State;
 import tostimannetje.landleven.questing.QuestReward.RewardType;
 import tostimannetje.landleven.questing.QuestBase.QuestState;
@@ -178,6 +181,7 @@ public class Quests implements IQuest{
 		if(reward.getRewardType() == RewardType.COINS) {
 			quest.addCoins(reward.getReward());
 			rewardMessage = "You have received: " + reward.getReward() + " coins!";
+			NetworkHandler.sendToPlayer(new MessageCoinsToClient(player), (EntityPlayerMP) player);
 		}else {
 			quest.addQuestLevel(reward.getReward());
 			rewardMessage = "New items are available in the store!";

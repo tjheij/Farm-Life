@@ -37,6 +37,8 @@ public class GuiStore extends GuiContainer{
 	private int storeheight = 256;
 	private int x,y;
 	int coins;
+	int questLevel;
+	private int nrOfItems;
 	
 	
 	public GuiStore(Container container) {
@@ -45,6 +47,7 @@ public class GuiStore extends GuiContainer{
 		this.ySize = storeheight;
 		IQuest questCapability = Minecraft.getMinecraft().player.getCapability(QuestProvider.QUEST, null);
 		this.coins = questCapability.getCoins();
+		this.questLevel = questCapability.getQuestLevel();
 		x = 14 + (width - xSize) / 2;
 		y = 37 + (height - ySize) / 2;
 	}
@@ -56,9 +59,15 @@ public class GuiStore extends GuiContainer{
 		
 		storeSections = Store.getStoreSections();
 		storeItems = storeSections.get(currentSection).getSection();
-		storeAmounts = new int[storeItems.size()];
+		this.nrOfItems = storeItems.size();
+		//If it is the reward section, limit nrOfItems to questlevel
+		if(currentSection == storeSections.size()-1) {
+			this.nrOfItems = Math.min(this.nrOfItems, this.questLevel);
+		}
 		
-		for(int i = 0; i < storeItems.size(); i++) {
+		storeAmounts = new int[this.nrOfItems];
+		
+		for(int i = 0; i < this.nrOfItems; i++) {
 			storeAmounts[i] = 1;
 		}
 		
@@ -66,7 +75,7 @@ public class GuiStore extends GuiContainer{
 		y = 37 + (height - ySize) / 2;
 		
 		for(int i = 0; i < storeSections.size(); i++) {
-			this.buttonList.add(new GuiStoreButton(66 + i, x-12 +20 * i, y-37, 38 + 20 * i, 70, 20, 18, 0));
+			this.buttonList.add(new GuiStoreButton(66 + i, x-11 +20 * i, y-37, 38 + 20 * i, 70, 20, 18, 0));
 		}
 		
 		
@@ -82,7 +91,7 @@ public class GuiStore extends GuiContainer{
 		
 		for(int i = 1; i <= 12; i++) {
 			//Draw if there are enough items on the page for the i'th
-			if(i + currentPage * 12 <= storeItems.size()) {
+			if(i + currentPage * 12 <= this.nrOfItems) {
 				//Buttons that control amount to buy
 				this.buttonList.add(new GuiStoreButton( i*5+1, x+4, y+20, 38, 0, 5, 5, 14));
 				this.buttonList.add(new GuiStoreButton( i*5+2, x+4, y+28, 38, 5, 5, 9, 14));
@@ -113,13 +122,11 @@ public class GuiStore extends GuiContainer{
 		y = 37 + (height - ySize) / 2;
 		
 		mc.getTextureManager().bindTexture(STOREITEM);
-		drawModalRectWithCustomSizedTexture(x -12 + currentSection * 20, y-19, 38, 89, 20, 3, 100, 100);
+		drawModalRectWithCustomSizedTexture(xBackground + 3 + currentSection * 20, yBackground + 18, 38, 89, 20, 3, 256, 256);
 		
-		
-		
-		for(int i = 0; i + currentPage * 12 < storeItems.size() && i < 12; i++) {
+		for(int i = 0; i + currentPage * 12 < this.nrOfItems && i < 12; i++) {
 			//Draw if there are enough items on the page for the i'th
-			if(i + currentPage * 12 <= storeItems.size()) {
+			if(i + currentPage * 12 <= this.nrOfItems) {
 				//Draw Item background
 				GlStateManager.color(1, 1, 1, 1);
 				mc.getTextureManager().bindTexture(STOREITEM);
@@ -188,13 +195,22 @@ public class GuiStore extends GuiContainer{
 		this.fontRenderer.drawString(coins, 250 - fontRenderer.getStringWidth(coins), 25, 0x404040);
 		
 		String sectionName = Store.getStoreSections().get(currentSection).getSectionName();
-		this.fontRenderer.drawString(sectionName, 50 - fontRenderer.getStringWidth(sectionName), 25, 0x404040);
+		this.fontRenderer.drawString(sectionName, x, 25, 0x404040);
 		
-		for(int i = 0; i + currentPage * 12 < storeItems.size() && i < 12; i++) {
+		for(int i = 0; i + currentPage * 12 < this.nrOfItems && i < 12; i++) {
 			//Draw if there are enough items on the page for the i'th
-			if(i + currentPage * 12 <= storeSections.get(currentSection).getSection().size()) {
-				String price = String.valueOf(storeItems.get(i + currentPage*12).price * storeAmounts[i]);
-				this.fontRenderer.drawString(price, x + 19 - fontRenderer.getStringWidth(price) / 2, y+ 54, 0x404040);
+			if(i + currentPage * 12 <= this.nrOfItems) {
+				int price = storeItems.get(i + currentPage*12).price * storeAmounts[i];
+				String priceString = "";
+				if(price > 1000000) {
+					priceString = String.valueOf(Math.round(price / 1000000)) + "M";
+				}else if(price > 10000) {
+					priceString = String.valueOf(Math.round(price / 1000)) + "K";
+				}else {
+					priceString = String.valueOf(price);
+				}
+				
+				this.fontRenderer.drawString(priceString, x + 19 - fontRenderer.getStringWidth(priceString) / 2, y+ 54, 0x404040);
 				
 				if (mouseX >= x + 10 + (width - xSize) / 2 && mouseX <= x + 28 + (width - xSize) / 2 && 
 						mouseY >= y + 16 + (height - ySize) / 2 && mouseY <= y + 34 + (height - ySize) / 2){
